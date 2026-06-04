@@ -1,0 +1,34 @@
+site_name: Projeto Final - Engenharia de Dados SATC
+site_url: https://octaviodemos.github.io/projeto-final-ed/
+repo_url: https://github.com/octaviodemos/projeto-final-ed
+repo_name: octaviodemos/projeto-final-ed
+theme:
+  name: material
+  language: pt
+  palette:
+    primary: green
+    accent: deep orange
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - admonition
+  - attr_list
+nav:
+  - Início: index.md
+  - Arquitetura: arquitetura.md
+  - 'Camada Landing': landing.md
+  - 'Camada Bronze': bronze.md
+  - 'Camada Silver': silver.md
+  - 'Camada Gold': gold.md
+  - Dashboard: dashboard.md
+  - Jobs: jobs.md
