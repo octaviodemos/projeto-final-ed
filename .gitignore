@@ -196,3 +196,7 @@ kaggle.json
 data/*.csv
 data/*.json
 data/*.parquet
+
+# Airflow
+airflow/logs/
+airflow/.astro/
