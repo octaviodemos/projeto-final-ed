@@ -1,0 +1,120 @@
+/* =========================
+   HEADER
+========================= */
+
+.md-header {
+    background: linear-gradient(90deg, #1b5e20, #388e3c);
+}
+
+
+/* =========================
+   TÍTULOS
+========================= */
+
+.md-typeset h1 {
+    color: #1b5e20;
+    font-weight: 800;
+}
+
+.md-typeset h2 {
+    border-bottom: 2px solid #4caf50;
+    padding-bottom: 6px;
+    margin-top: 40px;
+}
+
+.md-typeset h3 {
+    color: #2e7d32;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.grid.cards {
+    margin-top: 20px;
+}
+
+.grid.cards>ul>li {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.grid.cards>ul>li:hover {
+    transform: translateY(-5px);
+}
+
+
+/* =========================
+   ADMONITIONS (caixas info, warning, etc)
+========================= */
+
+.md-typeset .admonition {
+    border-radius: 12px;
+}
+
+
+/* =========================
+   TABELAS
+========================= */
+
+.md-typeset table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+
+/* =========================
+   CÓDIGO
+========================= */
+
+.highlight {
+    border-radius: 10px;
+}
+
+
+/* =========================
+   MENU LATERAL
+========================= */
+
+.md-nav__title {
+    font-weight: bold;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.md-footer {
+    background-color: #1b5e20;
+}
+
+
+/* =========================
+   BOTÃO "VOLTAR AO TOPO"
+   (MELHOR FIX COMPLETO)
+========================= */
+
+/* garante visibilidade e estilo moderno */
+.md-top {
+    background: #2e7d32;
+    color: white !important;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.25s ease;
+    opacity: 0.9;
+}
+
+/* hover moderno */
+.md-top:hover {
+    background: #1b5e20;
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* garante que não seja “escondido” por algum tema */
+.md-top[hidden],
+.md-top[style*="display: none"] {
+    display: block !important;
+}
