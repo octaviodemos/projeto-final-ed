@@ -3,11 +3,20 @@ hide:
   - navigation
 ---
 
-# Projeto Final - Engenharia de Dados
+# Projeto Final — Engenharia de Dados
 
-Trabalho desenvolvido para a disciplina de Engenharia de Dados do Curso de Engenharia de Software da UNISATC.
+Trabalho desenvolvido para a disciplina de **Engenharia de Dados** do curso de **Engenharia de Software** da **UNISATC**.
 
-A proposta do projeto é desenvolver uma pipeline de engenharia de dados completa, seguindo a arquitetura medallion (Landing, Bronze, Silver e Gold), com ingestão, transformação, armazenamento e visualização dos dados.
+## Sobre o Projeto
+
+Este projeto tem como objetivo a construção de uma **pipeline de Engenharia de Dados completa**, seguindo a arquitetura **Medallion**, composta pelas camadas:
+
+- 📥 **Landing** — ingestão dos dados brutos
+- 🥉 **Bronze** — padronização inicial
+- 🥈 **Silver** — limpeza e integração
+- 🥇 **Gold** — camada analítica para consumo
+
+Todo o fluxo contempla ingestão, transformação, armazenamento e visualização dos dados, utilizando tecnologias como **PySpark**, **MinIO**, **Airflow** e **Metabase**.
 
 ## Principais comandos do MkDocs
 
