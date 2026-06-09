@@ -25,7 +25,9 @@ Coloque uma imagem do seu projeto, como no exemplo abaixo:
 Dar exemplos
 ```
 
-## Instalação
+## Instalação e Execução
+
+O projeto utiliza o **`uv`** como gerenciador de dependências rápido e moderno.
 
 ### 1. Clonar o repositório
 
@@ -34,22 +36,37 @@ git clone https://github.com/octaviodemos/projeto-final-ed.git
 cd projeto-final-ed
 ```
 
-### 2. Configurar ambiente
+### 2. Configurar o ambiente
+
+Sincronize as dependências e baixe os JARs necessários para que o PySpark se conecte ao MinIO.
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e .
+uv sync
+uv run python scripts/setup_jars.py
 cp .env.example .env
 ```
+> **Nota**: Edite o arquivo `.env` para incluir suas credenciais do Kaggle (`KAGGLE_USERNAME` e `KAGGLE_KEY`).
 
-### 3. Subir infraestrutura local
+### 3. Subir a Infraestrutura (MinIO e Metabase)
 
 ```bash
-docker compose -f docker/docker-compose.yml up -d
+cd docker
+docker compose --env-file ../.env up -d
+cd ..
+```
+Acesse o MinIO em `http://localhost:9000` e o Metabase em `http://localhost:3000`.
+
+### 4. Executar Ingestão (Landing -> Bronze)
+
+Baixe os dados do Kaggle direto para a camada Landing (MinIO):
+```bash
+uv run python scripts/ingest/download_olist.py
 ```
 
-Acesse o MinIO em `http://localhost:9000` e o Metabase em `http://localhost:3000`.
+Processe os dados da Landing e grave como Delta Lake na camada Bronze:
+```bash
+uv run python notebooks/01a_landing_to_bronze.py
+```
 
 ## Documentação (MkDocs)
 
