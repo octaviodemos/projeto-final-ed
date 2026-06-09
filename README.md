@@ -1,10 +1,17 @@
 # Projeto Final - Engenharia de Dados SATC
 
-[![Docs](https://img.shields.io/badge/docs-mkdocs-blue)](https://octaviodemos.github.io/projeto-final-ed/)
+<!--[![Docs](https://img.shields.io/badge/docs-mkdocs-blue)](https://octaviodemos.github.io/projeto-final-ed/) -->
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python\&logoColor=white)](https://www.python.org/)
+[![PySpark](https://img.shields.io/badge/PySpark-3.x-E25A1C?logo=apachespark\&logoColor=white)](https://spark.apache.org/docs/latest/api/python/)
+[![Delta Lake](https://img.shields.io/badge/Delta%20Lake-Lakehouse-00ADD8)](https://delta.io/)
+[![MinIO](https://img.shields.io/badge/MinIO-S3%20Storage-C72E49?logo=minio\&logoColor=white)](https://min.io/)
+[![Docker Compose](https://img.shields.io/badge/Docker%20Compose-Orchestration-2496ED?logo=docker\&logoColor=white)](https://docs.docker.com/compose/)
+[![Metabase](https://img.shields.io/badge/Metabase-BI%20Dashboard-509EE3?logo=metabase\&logoColor=white)](https://www.metabase.com/)
+[![MkDocs](https://img.shields.io/badge/MkDocs-Material-526CFE?logo=materialformkdocs\&logoColor=white)](https://www.mkdocs.org/)
 
 Repositório do projeto final da disciplina de Engenharia de Dados do curso de Engenharia de Software da UNISATC.
+
 
 ## Desenho de Arquitetura
 
@@ -77,7 +84,7 @@ mkdocs build
 mkdocs serve
 ```
 
-Acesse o site em `http://127.0.0.1:8000`.
+Acesse o site em [Documentação Mkdocs](https://octaviodemos.github.io/projeto-final-ed/).
 
 Para publicar o site estático:
 
@@ -99,10 +106,21 @@ mkdocs gh-deploy
 
 ## Autores
 
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
+* **Ana Laura Vicenzi Dordete** - *Engenharia de Dados, Data Quality e Transformações da Camada Silver* - [https://github.com/anaavicenzi](https://github.com/anaavicenzi)
 
-* **Aluno 1** - *Trabalho Inicial* - [(https://github.com/linkParaPerfil)](https://github.com/linkParaPerfil)
-* **Aluno 2** - *Documentação* - [https://github.com/linkParaPerfil](https://github.com/linkParaPerfil)
+* **Gabriel Ribeiro Fernandes** - *Orquestração de Pipelines e Automação do Fluxo de Dados* - [https://github.com/gabrielribbz](https://github.com/gabrielribbz)
+
+* **Ismael Damasceno Tristão** - *Modelagem Dimensional (Kimball) e Camada Gold* - [https://github.com/IsmaelDamasceno](https://github.com/IsmaelDamasceno)
+
+* **João Vitor de Oliveira Lima** - *Conversão Landing → Bronze e Estruturação do Data Lake* - [https://github.com/JoaoVitorOL](https://github.com/JoaoVitorOL)
+
+* **Luiz Fillipy Vefago Binatti** - *Business Intelligence, Metabase e Dashboards Analíticos* - [https://github.com/luizzzxq](https://github.com/luizzzxq)
+
+* **Octávio da Silva Demos** - *Coordenação do Projeto, Gestão das Issues e Integração da Solução* - [https://github.com/octaviodemos](https://github.com/octaviodemos)
+
+* **Vinícius Pedroso Milanez** - *Documentação, MkDocs e Publicação no GitHub Pages* - [https://github.com/viniciusmilanez](https://github.com/viniciusmilanez)
+
+
 
 ## Licença
 

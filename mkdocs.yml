@@ -1,34 +1,82 @@
 site_name: Projeto Final - Engenharia de Dados SATC
 site_url: https://octaviodemos.github.io/projeto-final-ed/
+
 repo_url: https://github.com/octaviodemos/projeto-final-ed
 repo_name: octaviodemos/projeto-final-ed
+
 theme:
   name: material
-  language: pt
+  language: pt-BR
+
+  #logo: assets/logo.png
+  #favicon: assets/favicon.png
+
   palette:
-    primary: green
-    accent: deep orange
+
+    - scheme: default
+      primary: green
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Modo Escuro
+
+    - scheme: slate
+      primary: green
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: Modo Claro
+
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.top
+    - navigation.expand
+    - navigation.instant
+    - navigation.tracking
+
+    - search.highlight
+    - search.suggest
+
     - content.code.copy
+    - content.tabs.link
+
 markdown_extensions:
+
+  - admonition
+  - attr_list
+  - md_in_html
+
+  - pymdownx.details
+  - pymdownx.inlinehilite
+
+  - pymdownx.highlight:
+      anchor_linenums: true
+
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - admonition
-  - attr_list
+
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/octaviodemos/projeto-final-ed
+
 nav:
-  - Início: index.md
-  - Arquitetura: arquitetura.md
-  - 'Camada Landing': landing.md
-  - 'Camada Bronze': bronze.md
-  - 'Camada Silver': silver.md
-  - 'Camada Gold': gold.md
-  - Dashboard: dashboard.md
-  - Jobs: jobs.md
+  - 🏠 Início: index.md
+  - 🏗️ Arquitetura: arquitetura.md
+  - 📥 Landing: landing.md
+  - 🥉 Bronze: bronze.md
+  - 🥈 Silver: silver.md
+  - 🥇 Gold: gold.md
+  - 📊 Dashboard: dashboard.md
+  - ⚙️ Jobs: jobs.md
