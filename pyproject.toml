@@ -8,7 +8,7 @@ dependencies = [
     "pymdown-extensions>=10.7",
     "boto3>=1.34",
     "faker>=24.0",
-    "kaggle>=1.6",
+    "psycopg2-binary>=2.9",
     "jupyterlab>=4.1",
     "pyspark>=3.5",
     "delta-spark==3.2.1",
