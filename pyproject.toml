@@ -7,9 +7,11 @@ dependencies = [
     "mkdocs-mermaid2-plugin>=1.1",
     "pymdown-extensions>=10.7",
     "boto3>=1.34",
+    "psycopg[binary]>=3.2",
     "faker>=24.0",
     "psycopg2-binary>=2.9",
     "jupyterlab>=4.1",
+    "papermill>=2.6",
     "pyspark>=3.5",
     "delta-spark==3.2.1",
 ]
