@@ -11,6 +11,7 @@ dependencies = [
     "faker>=24.0",
     "kaggle>=1.6",
     "jupyterlab>=4.1",
+    "papermill>=2.6",
     "pyspark>=3.5",
     "delta-spark==3.2.1",
 ]
