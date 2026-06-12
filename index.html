@@ -496,10 +496,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#principais-comandos-do-mkdocs" class="md-nav__link">
+  <a href="#tecnologias-utilizadas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Principais comandos do MkDocs
+        Tecnologias Utilizadas
       
     </span>
   </a>
@@ -507,10 +507,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#documentacao-para-referencia-e-estudo" class="md-nav__link">
+  <a href="#navegacao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentacao para referencia e estudo
+        Navegação
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repositório
       
     </span>
   </a>
@@ -754,10 +765,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#principais-comandos-do-mkdocs" class="md-nav__link">
+  <a href="#tecnologias-utilizadas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Principais comandos do MkDocs
+        Tecnologias Utilizadas
       
     </span>
   </a>
@@ -765,10 +776,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#documentacao-para-referencia-e-estudo" class="md-nav__link">
+  <a href="#navegacao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentacao para referencia e estudo
+        Navegação
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repositório
       
     </span>
   </a>
@@ -802,21 +824,68 @@
 <h2 id="sobre-o-projeto">Sobre o Projeto</h2>
 <p>Este projeto tem como objetivo a construção de uma <strong>pipeline de Engenharia de Dados completa</strong>, seguindo a arquitetura <strong>Medallion</strong>, composta pelas camadas:</p>
 <ul>
-<li>📥 <strong>Landing</strong> — ingestão dos dados brutos</li>
-<li>🥉 <strong>Bronze</strong> — padronização inicial</li>
-<li>🥈 <strong>Silver</strong> — limpeza e integração</li>
-<li>🥇 <strong>Gold</strong> — camada analítica para consumo</li>
+<li>📥 <strong>Landing</strong> — ingestão dos dados brutos, sem transformações</li>
+<li>🥉 <strong>Bronze</strong> — padronização inicial e adição de metadados de rastreabilidade</li>
+<li>🥈 <strong>Silver</strong> — limpeza, integração e transformações de negócio</li>
+<li>🥇 <strong>Gold</strong> — camada analítica otimizada para consumo e visualização</li>
 </ul>
-<p>Todo o fluxo contempla ingestão, transformação, armazenamento e visualização dos dados, utilizando tecnologias como <strong>PySpark</strong>, <strong>MinIO</strong>, <strong>Airflow</strong> e <strong>Metabase</strong>.</p>
-<h2 id="principais-comandos-do-mkdocs">Principais comandos do MkDocs</h2>
+<p>O projeto combina duas fontes de dados complementares: os arquivos CSV do <strong>Brazilian E-Commerce Public Dataset by Olist</strong> (Kaggle) e um conjunto de <strong>support tickets NoSQL</strong> gerados sinteticamente com base nos pedidos reais, simulando dados operacionais de atendimento ao cliente.</p>
+<p>Todo o fluxo contempla ingestão, transformação, armazenamento e visualização dos dados, utilizando tecnologias como <strong>PySpark</strong>, <strong>Delta Lake</strong>, <strong>MinIO</strong>, <strong>Airflow</strong> e <strong>Metabase</strong>.</p>
+<h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
+<table>
+<thead>
+<tr>
+<th>Tecnologia</th>
+<th>Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python 3.11+</td>
+<td>Linguagem principal</td>
+</tr>
+<tr>
+<td>PySpark + Delta Lake</td>
+<td>Processamento e armazenamento em camadas</td>
+</tr>
+<tr>
+<td>MinIO</td>
+<td>Data Lake compatível com S3</td>
+</tr>
+<tr>
+<td>Apache Airflow</td>
+<td>Orquestração dos pipelines</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td>Fonte opcional dos dados NoSQL</td>
+</tr>
+<tr>
+<td>Docker Compose</td>
+<td>Orquestração dos serviços locais</td>
+</tr>
+<tr>
+<td>Metabase</td>
+<td>Dashboards e visualização analítica</td>
+</tr>
+<tr>
+<td>MkDocs Material</td>
+<td>Documentação do projeto</td>
+</tr>
+</tbody>
+</table>
+<h2 id="navegacao">Navegação</h2>
+<p>Utilize o menu lateral para explorar a documentação de cada camada da pipeline:</p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Cria um novo projeto.</li>
-<li><code>mkdocs serve</code> - Inicia o preview das paginas *.md da pasta /docs.</li>
-<li><code>mkdocs build</code> - Cria a estrutura de paginas web no padrao html, css, js.</li>
-<li><code>mkdocs gh-deploy</code> - Publica as paginas criadas pelo 'mkdocs build' na estrutura do github pages.</li>
+<li><strong>Arquitetura</strong> — visão geral do fluxo e dos componentes</li>
+<li><strong>Landing</strong> — fontes de dados, estrutura no MinIO e scripts de ingestão</li>
+<li><strong>Bronze</strong> — jobs de processamento, schema e validações de qualidade</li>
+<li><strong>Silver</strong> — transformações de negócio e integração dos datasets</li>
+<li><strong>Gold</strong> — camada analítica e modelo dimensional</li>
 </ul>
-<h2 id="documentacao-para-referencia-e-estudo">Documentacao para referencia e estudo</h2>
-<p><a href="https://squidfunk.github.io/mkdocs-material/">https://squidfunk.github.io/mkdocs-material/</a></p>
+<h2 id="repositorio">Repositório</h2>
+<p>O código-fonte do projeto está disponível em:</p>
+<p><a href="https://github.com/octaviodemos/projeto-final-ed">https://github.com/octaviodemos/projeto-final-ed</a></p>
 
 
 

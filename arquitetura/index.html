@@ -515,19 +515,41 @@
   <a href="#visao-geral" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Visão geral
+        Visão Geral
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Visão geral">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fontes-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fontes de Dados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fontes de Dados">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fluxo-de-dados" class="md-nav__link">
+  <a href="#dataset-olist-csv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fluxo de dados
+        Dataset Olist (CSV)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-tickets-nosql-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support Tickets NoSQL (JSON)
       
     </span>
   </a>
@@ -536,6 +558,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxo de Dados
+      
+    </span>
+  </a>
   
 </li>
       
@@ -608,6 +641,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisoes-de-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisões de Design
+      
+    </span>
+  </a>
   
 </li>
       
@@ -811,19 +855,41 @@
   <a href="#visao-geral" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Visão geral
+        Visão Geral
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Visão geral">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fontes-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fontes de Dados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fontes de Dados">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fluxo-de-dados" class="md-nav__link">
+  <a href="#dataset-olist-csv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fluxo de dados
+        Dataset Olist (CSV)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-tickets-nosql-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support Tickets NoSQL (JSON)
       
     </span>
   </a>
@@ -832,6 +898,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxo de Dados
+      
+    </span>
+  </a>
   
 </li>
       
@@ -907,6 +984,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#decisoes-de-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisões de Design
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -928,25 +1016,44 @@
 
 
 <h1 id="arquitetura">Arquitetura</h1>
-<p>Este projeto implementa uma pipeline de engenharia de dados baseada na arquitetura Medallion, utilizando o dataset de e-commerce da Olist como fonte de dados. O fluxo contempla ingestão, armazenamento, transformação e disponibilização dos dados para análise.</p>
-<h2 id="visao-geral">Visão geral</h2>
+<p>Este projeto implementa uma pipeline de engenharia de dados baseada na arquitetura <strong>Medallion</strong>, utilizando duas fontes de dados complementares: o dataset de e-commerce da Olist e um conjunto de support tickets NoSQL. O fluxo contempla ingestão, armazenamento, transformação e disponibilização dos dados para análise.</p>
+<hr />
+<h2 id="visao-geral">Visão Geral</h2>
 <pre class="mermaid"><code>flowchart LR
-    A[Kaggle - Olist Dataset] --&gt; B[Landing - MinIO]
+    A1[Kaggle - Olist CSV] --&gt; B[Landing - MinIO]
+    A2[Support Tickets NoSQL] --&gt; B
 
-    B --&gt; C[Bronze - PySpark]
-    C --&gt; D[Silver - PySpark]
-    D --&gt; E[Gold - PySpark]
+    B --&gt; C[Bronze - PySpark + Delta Lake]
+    C --&gt; D[Silver - PySpark + Delta Lake]
+    D --&gt; E[Gold - PySpark + Delta Lake]
 
-    E --&gt; F[Metabase]</code></pre>
-<h3 id="fluxo-de-dados">Fluxo de dados</h3>
+    E --&gt; F[Metabase]
+
+    G[Airflow] -.-&gt;|orquestra| C
+    G -.-&gt;|orquestra| D
+    G -.-&gt;|orquestra| E</code></pre>
+<hr />
+<h2 id="fontes-de-dados">Fontes de Dados</h2>
+<p>O projeto combina duas origens distintas na camada Landing:</p>
+<h3 id="dataset-olist-csv">Dataset Olist (CSV)</h3>
+<p>Conjunto público de e-commerce brasileiro disponibilizado no Kaggle, com aproximadamente 100 mil pedidos reais entre 2016 e 2018. Composto por 9 arquivos CSV com informações sobre pedidos, clientes, produtos, vendedores, pagamentos, avaliações e geolocalização.</p>
+<h3 id="support-tickets-nosql-json">Support Tickets NoSQL (JSON)</h3>
+<p>Conjunto complementar de dados sintéticos que simula tickets de suporte ao cliente, gerados com base nos <code>order_id</code> e <code>customer_id</code> reais do Olist. Adiciona informações operacionais não presentes nas tabelas relacionais, como canal de atendimento, prioridade, SLA, agente responsável e histórico de mensagens.</p>
+<blockquote>
+<p>O arquivo é nomeado <code>reviews_nosql.json</code> para manter compatibilidade com o restante da pipeline.</p>
+</blockquote>
+<hr />
+<h2 id="fluxo-de-dados">Fluxo de Dados</h2>
 <ol>
-<li>Os dados são extraídos do Kaggle.</li>
-<li>Os arquivos CSV são armazenados na camada Landing no MinIO.</li>
-<li>A camada Bronze realiza padronizações iniciais e controle de qualidade.</li>
-<li>A camada Silver aplica transformações de negócio e integração entre conjuntos de dados.</li>
-<li>A camada Gold disponibiliza tabelas analíticas otimizadas para consumo.</li>
-<li>O Metabase consome os dados da camada Gold para geração de dashboards.</li>
+<li>Os dados CSV do Olist são extraídos do Kaggle e armazenados na camada <strong>Landing</strong> no MinIO.</li>
+<li>Os support tickets NoSQL são gerados sinteticamente (ou exportados do Supabase) e armazenados também na camada <strong>Landing</strong>.</li>
+<li>A camada <strong>Bronze</strong> lê ambas as fontes via PySpark, adiciona metadados de rastreabilidade e persiste em Delta Lake.</li>
+<li>A camada <strong>Silver</strong> aplica limpeza, tipagem, integração entre os datasets e transformações de negócio.</li>
+<li>A camada <strong>Gold</strong> disponibiliza tabelas analíticas e métricas otimizadas para consumo.</li>
+<li>O <strong>Metabase</strong> consome os dados da camada Gold para geração de dashboards interativos.</li>
+<li>O <strong>Airflow</strong> orquestra o agendamento e a automação de todos os jobs de processamento.</li>
 </ol>
+<hr />
 <h2 id="componentes">Componentes</h2>
 <table>
 <thead>
@@ -958,9 +1065,14 @@
 </thead>
 <tbody>
 <tr>
-<td>Fonte de Dados</td>
+<td>Fonte relacional</td>
 <td>Kaggle</td>
-<td>Dataset público de e-commerce da Olist</td>
+<td>Dataset público de e-commerce da Olist (CSV)</td>
+</tr>
+<tr>
+<td>Fonte NoSQL</td>
+<td>Supabase / geração sintética</td>
+<td>Support tickets vinculados aos pedidos Olist (JSON)</td>
 </tr>
 <tr>
 <td>Armazenamento</td>
@@ -969,28 +1081,18 @@
 </tr>
 <tr>
 <td>Processamento</td>
-<td>PySpark</td>
-<td>Transformações e enriquecimento dos dados</td>
+<td>PySpark + Delta Lake</td>
+<td>Transformações, validações e persistência em camadas</td>
 </tr>
 <tr>
-<td>Landing</td>
-<td>MinIO</td>
-<td>Armazenamento dos dados brutos</td>
+<td>Orquestração</td>
+<td>Apache Airflow</td>
+<td>Agendamento e automação dos pipelines</td>
 </tr>
 <tr>
-<td>Bronze</td>
-<td>PySpark + MinIO</td>
-<td>Padronização inicial dos dados</td>
-</tr>
-<tr>
-<td>Silver</td>
-<td>PySpark + MinIO</td>
-<td>Limpeza e integração dos datasets</td>
-</tr>
-<tr>
-<td>Gold</td>
-<td>PySpark + MinIO</td>
-<td>Camada analítica para consumo</td>
+<td>Ambiente local</td>
+<td>Docker Compose</td>
+<td>Orquestração dos serviços (MinIO, Airflow, Metabase)</td>
 </tr>
 <tr>
 <td>Visualização</td>
@@ -998,26 +1100,43 @@
 <td>Dashboards e análises de negócio</td>
 </tr>
 <tr>
-<td>Orquestração</td>
-<td>Airflow</td>
-<td>Agendamento e automação dos pipelines</td>
-</tr>
-<tr>
-<td>Ambiente</td>
-<td>Docker Compose</td>
-<td>Orquestração dos serviços locais</td>
+<td>Documentação</td>
+<td>MkDocs Material</td>
+<td>Documentação técnica do projeto</td>
 </tr>
 </tbody>
 </table>
+<hr />
 <h2 id="estrutura-das-camadas">Estrutura das Camadas</h2>
 <h3 id="landing">Landing</h3>
-<p>Armazena os arquivos originais extraídos do Kaggle sem qualquer transformação.</p>
+<p>Armazena os dados brutos sem nenhuma transformação, preservando o formato original de cada fonte.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>landing/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── olist/
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   └── YYYY-MM-DD/
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│       └── *.csv          ← 9 arquivos do dataset Olist
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>└── nosql/
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    └── YYYY-MM-DD/
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        └── reviews_nosql.json   ← support tickets
+</code></pre></div>
 <h3 id="bronze">Bronze</h3>
-<p>Contém os dados convertidos para um formato padronizado e preparados para processamento.</p>
+<p>Converte os dados brutos para Delta Lake, adiciona metadados de ingestão (<code>_ingestion_timestamp</code>, <code>_source_file</code>) e executa validações de qualidade. Nenhuma transformação de negócio é aplicada nesta etapa.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>bronze/
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── olist_orders_dataset/
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── olist_customers_dataset/
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── olist_products_dataset/
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── ... (demais tabelas Olist)
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>└── reviews_nosql/          ← support tickets em Delta Lake
+</code></pre></div>
 <h3 id="silver">Silver</h3>
-<p>Armazena dados tratados, limpos e integrados, servindo como base para análises.</p>
+<p>Aplica limpeza, padronização de tipos, tratamento de nulos e integração entre os datasets relacionais e os support tickets. Serve como base confiável para a camada analítica.</p>
 <h3 id="gold">Gold</h3>
-<p>Disponibiliza datasets analíticos e métricas de negócio utilizados pelos dashboards.</p>
+<p>Disponibiliza datasets analíticos e métricas de negócio em formato otimizado para consulta, consumidos diretamente pelo Metabase para geração de dashboards.</p>
+<hr />
+<h2 id="decisoes-de-design">Decisões de Design</h2>
+<p><strong>Por que Delta Lake?</strong>
+O Delta Lake oferece suporte a transações ACID, versionamento de schema e integração nativa com PySpark, tornando-o ideal para garantir consistência entre as camadas da arquitetura Medallion.</p>
+<p><strong>Por que MinIO?</strong>
+O MinIO é compatível com a API S3 da AWS, permitindo que o projeto simule um ambiente de Data Lake em nuvem rodando completamente de forma local via Docker.</p>
 
 
 
