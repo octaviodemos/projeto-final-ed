@@ -15,3 +15,12 @@ dependencies = [
     "pyspark>=3.5",
     "delta-spark==3.2.1",
 ]
+
+[dependency-groups]
+dev = [
+    "poethepoet>=0.46.0",
+]
+
+[tool.poe.tasks]
+docker-up = "docker compose -f docker/docker-compose.yml --env-file .env up -d"
+docker-down = "docker compose -f docker/docker-compose.yml down"
