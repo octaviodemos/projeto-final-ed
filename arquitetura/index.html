@@ -523,41 +523,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fontes-de-dados" class="md-nav__link">
+  <a href="#fonte-de-dados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fontes de Dados
+        Fonte de Dados
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Fontes de Dados">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dataset-olist-csv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dataset Olist (CSV)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#support-tickets-nosql-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Support Tickets NoSQL (JSON)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -863,41 +835,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fontes-de-dados" class="md-nav__link">
+  <a href="#fonte-de-dados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fontes de Dados
+        Fonte de Dados
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Fontes de Dados">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dataset-olist-csv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dataset Olist (CSV)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#support-tickets-nosql-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Support Tickets NoSQL (JSON)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1016,12 +960,11 @@
 
 
 <h1 id="arquitetura">Arquitetura</h1>
-<p>Este projeto implementa uma pipeline de engenharia de dados baseada na arquitetura <strong>Medallion</strong>, utilizando duas fontes de dados complementares: o dataset de e-commerce da Olist e um conjunto de support tickets NoSQL. O fluxo contempla ingestão, armazenamento, transformação e disponibilização dos dados para análise.</p>
+<p>Este projeto implementa uma pipeline de engenharia de dados baseada na arquitetura <strong>Medallion</strong>. O <strong>Supabase (PostgreSQL)</strong> é a única fonte de verdade — todos os dados das camadas medalhão (Landing, Bronze, Silver e Gold) têm origem no banco do Supabase. O fluxo contempla ingestão, armazenamento, transformação e disponibilização dos dados para análise.</p>
 <hr />
 <h2 id="visao-geral">Visão Geral</h2>
 <pre class="mermaid"><code>flowchart LR
-    A1[Kaggle - Olist CSV] --&gt; B[Landing - MinIO]
-    A2[Support Tickets NoSQL] --&gt; B
+    A[Supabase - PostgreSQL] --&gt; B[Landing - MinIO]
 
     B --&gt; C[Bronze - PySpark + Delta Lake]
     C --&gt; D[Silver - PySpark + Delta Lake]
@@ -1033,21 +976,21 @@
     G -.-&gt;|orquestra| D
     G -.-&gt;|orquestra| E</code></pre>
 <hr />
-<h2 id="fontes-de-dados">Fontes de Dados</h2>
-<p>O projeto combina duas origens distintas na camada Landing:</p>
-<h3 id="dataset-olist-csv">Dataset Olist (CSV)</h3>
-<p>Conjunto público de e-commerce brasileiro disponibilizado no Kaggle, com aproximadamente 100 mil pedidos reais entre 2016 e 2018. Composto por 9 arquivos CSV com informações sobre pedidos, clientes, produtos, vendedores, pagamentos, avaliações e geolocalização.</p>
-<h3 id="support-tickets-nosql-json">Support Tickets NoSQL (JSON)</h3>
-<p>Conjunto complementar de dados sintéticos que simula tickets de suporte ao cliente, gerados com base nos <code>order_id</code> e <code>customer_id</code> reais do Olist. Adiciona informações operacionais não presentes nas tabelas relacionais, como canal de atendimento, prioridade, SLA, agente responsável e histórico de mensagens.</p>
-<blockquote>
-<p>O arquivo é nomeado <code>reviews_nosql.json</code> para manter compatibilidade com o restante da pipeline.</p>
-</blockquote>
+<h2 id="fonte-de-dados">Fonte de Dados</h2>
+<p>O projeto utiliza o <strong>Supabase (PostgreSQL)</strong> como única origem de dados, contendo 12 tabelas:</p>
+<ul>
+<li><strong>9 tabelas do dataset Olist</strong> — dados públicos de e-commerce brasileiro com aproximadamente 100 mil pedidos reais entre 2016 e 2018, cobrindo pedidos, clientes, produtos, vendedores, pagamentos, avaliações e geolocalização.</li>
+<li><strong>3 tabelas sintéticas geradas com Faker</strong> — simulam a operação de suporte ao cliente vinculada aos pedidos Olist:</li>
+<li><code>agents</code> — agentes de suporte (50 agentes, 10 por equipe)</li>
+<li><code>support_tickets</code> — tickets de atendimento com canal, prioridade, SLA e resolução</li>
+<li><code>support_ticket_messages</code> — histórico de mensagens por ticket</li>
+</ul>
 <hr />
 <h2 id="fluxo-de-dados">Fluxo de Dados</h2>
 <ol>
-<li>Os dados CSV do Olist são extraídos do Kaggle e armazenados na camada <strong>Landing</strong> no MinIO.</li>
-<li>Os support tickets NoSQL são gerados sinteticamente (ou exportados do Supabase) e armazenados também na camada <strong>Landing</strong>.</li>
-<li>A camada <strong>Bronze</strong> lê ambas as fontes via PySpark, adiciona metadados de rastreabilidade e persiste em Delta Lake.</li>
+<li>Os scripts <code>generate_agents.py</code> e <code>generate_support_tickets_nosql.py</code> populam as tabelas sintéticas no Supabase.</li>
+<li>O notebook <code>00_download_olist.ipynb</code> conecta ao Supabase, extrai as 12 tabelas como CSV e faz upload para a camada <strong>Landing</strong> no MinIO.</li>
+<li>A camada <strong>Bronze</strong> lê os 12 CSVs via PySpark, adiciona metadados de rastreabilidade e persiste em Delta Lake.</li>
 <li>A camada <strong>Silver</strong> aplica limpeza, tipagem, integração entre os datasets e transformações de negócio.</li>
 <li>A camada <strong>Gold</strong> disponibiliza tabelas analíticas e métricas otimizadas para consumo.</li>
 <li>O <strong>Metabase</strong> consome os dados da camada Gold para geração de dashboards interativos.</li>
@@ -1065,14 +1008,9 @@
 </thead>
 <tbody>
 <tr>
-<td>Fonte relacional</td>
-<td>Kaggle</td>
-<td>Dataset público de e-commerce da Olist (CSV)</td>
-</tr>
-<tr>
-<td>Fonte NoSQL</td>
-<td>Supabase / geração sintética</td>
-<td>Support tickets vinculados aos pedidos Olist (JSON)</td>
+<td>Fonte de Dados</td>
+<td>Supabase (PostgreSQL)</td>
+<td>Fonte única — 9 tabelas Olist + 3 tabelas sintéticas</td>
 </tr>
 <tr>
 <td>Armazenamento</td>
@@ -1109,26 +1047,34 @@
 <hr />
 <h2 id="estrutura-das-camadas">Estrutura das Camadas</h2>
 <h3 id="landing">Landing</h3>
-<p>Armazena os dados brutos sem nenhuma transformação, preservando o formato original de cada fonte.</p>
+<p>Armazena os CSVs extraídos do Supabase sem nenhuma transformação — 12 arquivos planos no bucket <code>landing</code>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>landing/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── olist/
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   └── YYYY-MM-DD/
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│       └── *.csv          ← 9 arquivos do dataset Olist
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>└── nosql/
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    └── YYYY-MM-DD/
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        └── reviews_nosql.json   ← support tickets
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── olist_customers_dataset.csv
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── olist_geolocation_dataset.csv
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── olist_order_items_dataset.csv
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── olist_order_payments_dataset.csv
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── olist_order_reviews_dataset.csv
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── olist_orders_dataset.csv
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── olist_products_dataset.csv
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── olist_sellers_dataset.csv
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── product_category_name_translation.csv
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├── agents.csv
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├── support_tickets.csv
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>└── support_ticket_messages.csv
 </code></pre></div>
 <h3 id="bronze">Bronze</h3>
-<p>Converte os dados brutos para Delta Lake, adiciona metadados de ingestão (<code>_ingestion_timestamp</code>, <code>_source_file</code>) e executa validações de qualidade. Nenhuma transformação de negócio é aplicada nesta etapa.</p>
+<p>Converte os 12 CSVs para Delta Lake, adiciona metadados de ingestão (<code>_ingestion_timestamp</code>, <code>_source_file</code>) e valida a escrita. Nenhuma transformação de negócio é aplicada nesta etapa.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>bronze/
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── olist_orders_dataset/
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── olist_customers_dataset/
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── olist_products_dataset/
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── ... (demais tabelas Olist)
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>└── reviews_nosql/          ← support tickets em Delta Lake
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── agents/
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>├── support_tickets/
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>└── support_ticket_messages/
 </code></pre></div>
 <h3 id="silver">Silver</h3>
-<p>Aplica limpeza, padronização de tipos, tratamento de nulos e integração entre os datasets relacionais e os support tickets. Serve como base confiável para a camada analítica.</p>
+<p>Aplica limpeza, padronização de tipos, tratamento de nulos e integração entre os datasets. Serve como base confiável para a camada analítica.</p>
 <h3 id="gold">Gold</h3>
 <p>Disponibiliza datasets analíticos e métricas de negócio em formato otimizado para consulta, consumidos diretamente pelo Metabase para geração de dashboards.</p>
 <hr />
