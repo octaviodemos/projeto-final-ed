@@ -2,33 +2,30 @@ from __future__ import annotations
 
 import argparse
 import csv
-import io
 import json
 import os
 import random
-import tempfile
 from collections import Counter
 from dataclasses import dataclass
 from datetime import date, datetime, time, timedelta, timezone
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 from typing import Iterable, Sequence
 
-import boto3
-from botocore.exceptions import BotoCoreError, ClientError
+import psycopg2
+from psycopg2 import OperationalError as PgOperationalError
+from psycopg2.extras import execute_batch
 from faker import Faker
 
 DEFAULT_RECORD_COUNT = 12_000
 DEFAULT_START_DATE = date(2016, 1, 1)
 DEFAULT_END_DATE = date(2018, 12, 31)
-DEFAULT_BUCKET_NAME = "landing"
-DEFAULT_PREFIX = "nosql"
-DEFAULT_OBJECT_NAME = "reviews_nosql.json"
 DEFAULT_ORDERS_FILENAME = "olist_orders_dataset.csv"
 
 REQUIRED_FIELDS = (
     "ticket_id",
     "order_id",
     "customer_id",
+    "agent_id",
     "channel",
     "issue_type",
     "priority",
@@ -36,7 +33,6 @@ REQUIRED_FIELDS = (
     "opened_at",
     "first_response_minutes",
     "sla_target_hours",
-    "agent",
     "resolution",
     "messages",
 )
@@ -215,101 +211,29 @@ CLOSED_STATUSES = {"resolved", "closed"}
 
 @dataclass(frozen=True)
 class OrderReference:
-    """Minimum Olist fields needed to relate support tickets to real orders."""
-
     order_id: str
     customer_id: str
     order_status: str
 
 
-@dataclass(frozen=True)
-class MinioConfig:
-    """MinIO connection settings."""
-
-    endpoint_url: str
-    access_key: str
-    secret_key: str
-    bucket_name: str
-    prefix: str
-
-
 def parse_args() -> argparse.Namespace:
-    """Read CLI arguments."""
-
     parser = argparse.ArgumentParser(
-        description=(
-            "Generate a complementary NoSQL support-ticket dataset linked to Olist orders. "
-            "The file remains named reviews_nosql.json for pipeline compatibility."
-        )
+        description="Generate support-ticket dataset linked to Olist orders and insert into Supabase."
     )
-    parser.add_argument(
-        "--record-count",
-        type=int,
-        default=DEFAULT_RECORD_COUNT,
-        help="Number of support ticket documents to generate. Default: 12000.",
-    )
-    parser.add_argument(
-        "--start-date",
-        type=parse_date,
-        default=DEFAULT_START_DATE,
-        help="Inclusive lower bound for opened_at in YYYY-MM-DD format.",
-    )
-    parser.add_argument(
-        "--end-date",
-        type=parse_date,
-        default=DEFAULT_END_DATE,
-        help="Inclusive upper bound for opened_at in YYYY-MM-DD format.",
-    )
+    parser.add_argument("--record-count", type=int, default=DEFAULT_RECORD_COUNT)
+    parser.add_argument("--start-date", type=parse_date, default=DEFAULT_START_DATE)
+    parser.add_argument("--end-date", type=parse_date, default=DEFAULT_END_DATE)
     parser.add_argument(
         "--orders-csv",
         type=Path,
-        help="Optional local path to olist_orders_dataset.csv for development or testing.",
+        help="Local path to olist_orders_dataset.csv (skips Supabase order fetch).",
     )
     parser.add_argument(
-        "--orders-key",
-        help="Optional object key for olist_orders_dataset.csv in Landing.",
+        "--supabase-url",
+        default=os.getenv("SUPABASE_URL", ""),
+        help="Supabase connection string. Defaults to SUPABASE_URL env var.",
     )
-    parser.add_argument(
-        "--output-file",
-        type=Path,
-        help="Optional local output path for the generated JSON file.",
-    )
-    parser.add_argument(
-        "--bucket-name",
-        default=os.getenv("MINIO_BUCKET_LANDING", DEFAULT_BUCKET_NAME),
-        help="Landing bucket name. Defaults to MINIO_BUCKET_LANDING or 'landing'.",
-    )
-    parser.add_argument(
-        "--prefix",
-        default=DEFAULT_PREFIX,
-        help="Destination prefix inside the Landing bucket. Default: nosql.",
-    )
-    parser.add_argument(
-        "--minio-endpoint",
-        default=os.getenv("MINIO_ENDPOINT", "http://localhost:9000"),
-        help="MinIO endpoint URL. Defaults to MINIO_ENDPOINT or http://localhost:9000.",
-    )
-    parser.add_argument(
-        "--minio-access-key",
-        default=os.getenv("MINIO_ACCESS_KEY", "minioadmin"),
-        help="MinIO access key. Defaults to MINIO_ACCESS_KEY or minioadmin.",
-    )
-    parser.add_argument(
-        "--minio-secret-key",
-        default=os.getenv("MINIO_SECRET_KEY", "minioadmin"),
-        help="MinIO secret key. Defaults to MINIO_SECRET_KEY or minioadmin.",
-    )
-    parser.add_argument(
-        "--seed",
-        type=int,
-        default=42,
-        help="Deterministic seed for reproducible generation. Default: 42.",
-    )
-    parser.add_argument(
-        "--skip-upload",
-        action="store_true",
-        help="Generate the JSON file locally without uploading it to MinIO.",
-    )
+    parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
     if args.record_count <= 0:
         parser.error("--record-count must be a positive integer.")
@@ -319,22 +243,15 @@ def parse_args() -> argparse.Namespace:
 
 
 def parse_date(value: str) -> date:
-    """Convert YYYY-MM-DD into date."""
-
     try:
         return date.fromisoformat(value)
     except ValueError as exc:
-        raise argparse.ArgumentTypeError(
-            f"Invalid date '{value}'. Use YYYY-MM-DD."
-        ) from exc
+        raise argparse.ArgumentTypeError(f"Invalid date '{value}'. Use YYYY-MM-DD.") from exc
 
 
 def load_env_file(path: Path) -> None:
-    """Load a simple .env file without extra dependencies."""
-
     if not path.exists():
         return
-
     for raw_line in path.read_text(encoding="utf-8").splitlines():
         line = raw_line.strip()
         if not line or line.startswith("#") or "=" not in line:
@@ -343,140 +260,190 @@ def load_env_file(path: Path) -> None:
         os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
 
 
-def build_minio_config(args: argparse.Namespace) -> MinioConfig:
-    """Build MinIO settings from arguments."""
+def _connect(dsn: str):
+    from urllib.parse import urlparse, unquote
+    try:
+        parsed = urlparse(dsn)
+        return psycopg2.connect(
+            host=parsed.hostname,
+            port=parsed.port or 5432,
+            dbname=parsed.path.lstrip("/"),
+            user=parsed.username,
+            password=unquote(parsed.password or ""),
+            connect_timeout=10,
+            sslmode="require",
+        )
+    except PgOperationalError as exc:
+        raise RuntimeError(f"Falha de conexão com o Supabase: {exc}") from exc
 
-    return MinioConfig(
-        endpoint_url=args.minio_endpoint,
-        access_key=args.minio_access_key,
-        secret_key=args.minio_secret_key,
-        bucket_name=args.bucket_name,
-        prefix=args.prefix.strip("/"),
-    )
+
+def load_agents_from_supabase(dsn: str) -> dict[str, list[str]]:
+    """Returns a dict of team -> list of agent_ids."""
+    conn = _connect(dsn)
+    try:
+        with conn.cursor() as cur:
+            cur.execute("SELECT agent_id, team FROM agents")
+            rows = cur.fetchall()
+        agents_by_team: dict[str, list[str]] = {}
+        for agent_id, team in rows:
+            agents_by_team.setdefault(team, []).append(agent_id)
+        if not agents_by_team:
+            raise RuntimeError("No agents found in Supabase. Run generate_agents.py first.")
+        return agents_by_team
+    finally:
+        conn.close()
 
 
-def create_s3_client(config: MinioConfig):
-    """Create an S3-compatible client for MinIO."""
-
-    return boto3.client(
-        "s3",
-        endpoint_url=config.endpoint_url,
-        aws_access_key_id=config.access_key,
-        aws_secret_access_key=config.secret_key,
-        region_name="us-east-1",
-    )
+def load_order_references_from_supabase(dsn: str) -> list[OrderReference]:
+    conn = _connect(dsn)
+    try:
+        with conn.cursor() as cur:
+            cur.execute('SELECT order_id, customer_id, order_status FROM "olist_orders_dataset.csv"')
+            rows = cur.fetchall()
+        return extract_order_references(
+            {"order_id": r[0], "customer_id": r[1], "order_status": r[2]} for r in rows
+        )
+    finally:
+        conn.close()
 
 
 def load_order_references_from_csv(path: Path) -> list[OrderReference]:
-    """Read Olist orders from a local CSV."""
-
-    with path.open("r", encoding="utf-8-sig", newline="") as csv_file:
-        reader = csv.DictReader(csv_file)
-        return extract_order_references(reader)
-
-
-def load_order_references_from_minio(
-    s3_client,
-    bucket_name: str,
-    orders_key: str | None,
-) -> tuple[list[OrderReference], str]:
-    """Read Olist orders from Landing and return relationship keys."""
-
-    resolved_key = resolve_orders_key(s3_client, bucket_name, orders_key)
-    response = s3_client.get_object(Bucket=bucket_name, Key=resolved_key)
-    payload = response["Body"].read().decode("utf-8-sig")
-    reader = csv.DictReader(io.StringIO(payload))
-    return extract_order_references(reader), resolved_key
-
-
-def resolve_orders_key(s3_client, bucket_name: str, orders_key: str | None) -> str:
-    """Find the Olist orders CSV in a Landing bucket."""
-
-    if orders_key:
-        return orders_key
-
-    paginator = s3_client.get_paginator("list_objects_v2")
-    matches: list[dict] = []
-
-    for page in paginator.paginate(Bucket=bucket_name):
-        for obj in page.get("Contents", []):
-            if obj["Key"].endswith(DEFAULT_ORDERS_FILENAME):
-                matches.append(obj)
-
-    if not matches:
-        raise FileNotFoundError(
-            f"Could not find '{DEFAULT_ORDERS_FILENAME}' in bucket '{bucket_name}'. "
-            "Provide --orders-csv or --orders-key."
-        )
-
-    matches.sort(key=lambda item: item["LastModified"], reverse=True)
-    return matches[0]["Key"]
+    with path.open("r", encoding="utf-8-sig", newline="") as f:
+        return extract_order_references(csv.DictReader(f))
 
 
 def extract_order_references(rows: Iterable[dict[str, str]]) -> list[OrderReference]:
-    """Deduplicate orders and keep only fields needed to relate support tickets."""
-
     references: dict[str, OrderReference] = {}
-
     for row in rows:
         order_id = (row.get("order_id") or "").strip()
         customer_id = (row.get("customer_id") or "").strip()
         order_status = (row.get("order_status") or "unknown").strip().lower()
         if not order_id or not customer_id:
             continue
-
-        existing_reference = references.get(order_id)
-        if existing_reference and existing_reference.customer_id != customer_id:
-            raise ValueError(
-                f"Order '{order_id}' is linked to multiple customer_ids in the source data."
-            )
-
+        existing = references.get(order_id)
+        if existing and existing.customer_id != customer_id:
+            raise ValueError(f"Order '{order_id}' linked to multiple customer_ids.")
         references[order_id] = OrderReference(
             order_id=order_id,
             customer_id=customer_id,
             order_status=order_status or "unknown",
         )
-
     if not references:
-        raise ValueError("No valid order_id/customer_id pairs were found in the orders dataset.")
-
+        raise ValueError("No valid order_id/customer_id pairs found.")
     return list(references.values())
 
 
-def allocate_years(
-    record_count: int,
-    start_date: date,
-    end_date: date,
-    rng: random.Random,
-) -> list[int]:
-    """Spread generated tickets across all configured years."""
+def create_table_if_not_exists(conn) -> None:
+    with conn.cursor() as cur:
+        cur.execute("DROP TABLE IF EXISTS support_ticket_messages")
+        cur.execute("DROP TABLE IF EXISTS support_tickets")
+        cur.execute("""
+            CREATE TABLE support_tickets (
+                ticket_id              TEXT PRIMARY KEY,
+                order_id               TEXT NOT NULL,
+                customer_id            TEXT NOT NULL,
+                agent_id               TEXT REFERENCES agents(agent_id),
+                channel                TEXT,
+                issue_type             TEXT,
+                priority               TEXT,
+                status                 TEXT,
+                opened_at              TIMESTAMPTZ,
+                first_response_minutes INTEGER,
+                sla_target_hours       INTEGER,
+                closed_at              TIMESTAMPTZ,
+                resolution_outcome        TEXT,
+                resolution_hours          INTEGER,
+                requires_seller_action    BOOLEAN,
+                resolution_compensation   TEXT
+            )
+        """)
+        cur.execute("""
+            CREATE TABLE support_ticket_messages (
+                message_id TEXT PRIMARY KEY,
+                ticket_id  TEXT NOT NULL REFERENCES support_tickets(ticket_id) ON DELETE CASCADE,
+                sender     TEXT NOT NULL,
+                sent_at    TIMESTAMPTZ,
+                body       TEXT
+            )
+        """)
+    conn.commit()
 
+
+def insert_into_supabase(dsn: str, tickets: list[dict]) -> None:
+    conn = _connect(dsn)
+    try:
+        create_table_if_not_exists(conn)
+        with conn.cursor() as cur:
+            execute_batch(
+                cur,
+                """
+                INSERT INTO support_tickets (
+                    ticket_id, order_id, customer_id, agent_id, channel, issue_type,
+                    priority, status, opened_at, first_response_minutes,
+                    sla_target_hours, closed_at,
+                    resolution_outcome, resolution_hours,
+                    requires_seller_action, resolution_compensation
+                ) VALUES (
+                    %(ticket_id)s, %(order_id)s, %(customer_id)s, %(agent_id)s, %(channel)s, %(issue_type)s,
+                    %(priority)s, %(status)s, %(opened_at)s, %(first_response_minutes)s,
+                    %(sla_target_hours)s, %(closed_at)s,
+                    %(resolution_outcome)s, %(resolution_hours)s,
+                    %(requires_seller_action)s, %(resolution_compensation)s
+                )
+                """,
+                [
+                    {
+                        **t,
+                        "resolution_outcome": t["resolution"]["outcome"],
+                        "resolution_hours": t["resolution"]["resolution_hours"],
+                        "requires_seller_action": t["resolution"]["requires_seller_action"],
+                        "resolution_compensation": t["resolution"]["compensation"],
+                    }
+                    for t in tickets
+                ],
+                page_size=500,
+            )
+            messages = [
+                {
+                    "message_id": msg["message_id"],
+                    "ticket_id": t["ticket_id"],
+                    "sender": msg["sender"],
+                    "sent_at": msg["sent_at"],
+                    "body": msg["body"],
+                }
+                for t in tickets
+                for msg in t["messages"]
+            ]
+            execute_batch(
+                cur,
+                """
+                INSERT INTO support_ticket_messages (message_id, ticket_id, sender, sent_at, body)
+                VALUES (%(message_id)s, %(ticket_id)s, %(sender)s, %(sent_at)s, %(body)s)
+                """,
+                messages,
+                page_size=500,
+            )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def allocate_years(record_count: int, start_date: date, end_date: date, rng: random.Random) -> list[int]:
     years = list(range(start_date.year, end_date.year + 1))
     base_count, remainder = divmod(record_count, len(years))
     allocations = {year: base_count for year in years}
-
     for year in rng.sample(years, k=remainder):
         allocations[year] += 1
-
     year_assignments: list[int] = []
     for year in years:
         year_assignments.extend([year] * allocations[year])
-
     rng.shuffle(year_assignments)
     return year_assignments
 
 
-def random_datetime_for_year(
-    year: int,
-    start_date: date,
-    end_date: date,
-    rng: random.Random,
-) -> datetime:
-    """Generate a UTC timestamp inside the configured date window."""
-
+def random_datetime_for_year(year: int, start_date: date, end_date: date, rng: random.Random) -> datetime:
     lower_bound = max(start_date, date(year, 1, 1))
     upper_bound = min(end_date, date(year, 12, 31))
-
     start_dt = datetime.combine(lower_bound, time(0, 0, 0), tzinfo=timezone.utc)
     end_dt = datetime.combine(upper_bound, time(23, 59, 59), tzinfo=timezone.utc)
     delta_seconds = int((end_dt - start_dt).total_seconds())
@@ -485,13 +452,12 @@ def random_datetime_for_year(
 
 def generate_support_tickets(
     order_references: Sequence[OrderReference],
+    agents_by_team: dict[str, list[str]],
     record_count: int,
     start_date: date,
     end_date: date,
     seed: int,
 ) -> list[dict[str, object]]:
-    """Build support-ticket documents linked to Olist orders."""
-
     if not order_references:
         raise ValueError("At least one valid order reference is required.")
 
@@ -506,12 +472,7 @@ def generate_support_tickets(
     tickets: list[dict[str, object]] = []
     for order_reference, assigned_year in zip(selected_orders, assigned_years):
         ticket_id = f"sup_{rng.getrandbits(128):032x}"
-        opened_at = random_datetime_for_year(
-            assigned_year,
-            start_date=start_date,
-            end_date=end_date,
-            rng=rng,
-        )
+        opened_at = random_datetime_for_year(assigned_year, start_date=start_date, end_date=end_date, rng=rng)
         issue_type = choose_issue_type(order_reference.order_status, rng)
         priority = choose_priority(issue_type, rng)
         status = weighted_choice(STATUS_WEIGHTS, rng)
@@ -523,6 +484,7 @@ def generate_support_tickets(
                 "ticket_id": ticket_id,
                 "order_id": order_reference.order_id,
                 "customer_id": order_reference.customer_id,
+                "agent_id": pick_agent(issue_type, agents_by_team, rng),
                 "channel": weighted_choice(CHANNEL_WEIGHTS, rng),
                 "issue_type": issue_type,
                 "priority": priority,
@@ -530,7 +492,6 @@ def generate_support_tickets(
                 "opened_at": format_datetime(opened_at),
                 "first_response_minutes": first_response_minutes,
                 "sla_target_hours": SLA_TARGET_HOURS[priority],
-                "agent": build_agent(issue_type, fake, rng),
                 "closed_at": format_datetime(closed_at) if closed_at else None,
                 "resolution": build_resolution(issue_type, status, resolution_hours, rng),
                 "messages": build_messages(
@@ -554,37 +515,27 @@ def select_order_references(
     record_count: int,
     rng: random.Random,
 ) -> list[OrderReference]:
-    """Sample orders, allowing repeats only when more documents are requested."""
-
     if record_count <= len(order_references):
         return rng.sample(list(order_references), k=record_count)
     return [rng.choice(order_references) for _ in range(record_count)]
 
 
 def choose_issue_type(order_status: str, rng: random.Random) -> str:
-    """Pick a support issue related to the order status."""
-
     return weighted_choice(ISSUE_WEIGHTS.get(order_status, ISSUE_WEIGHTS["default"]), rng)
 
 
 def choose_priority(issue_type: str, rng: random.Random) -> str:
-    """Pick operational priority by support issue."""
-
     weights = PRIORITY_WEIGHTS_BY_ISSUE.get(issue_type, PRIORITY_WEIGHTS_BY_ISSUE["default"])
     return weighted_choice(weights, rng)
 
 
 def weighted_choice(options: Sequence[tuple[str, float]], rng: random.Random) -> str:
-    """Pick one weighted option using the deterministic RNG."""
-
     labels = [label for label, _ in options]
     weights = [weight for _, weight in options]
     return rng.choices(labels, weights=weights, k=1)[0]
 
 
 def build_first_response_minutes(priority: str, rng: random.Random) -> int:
-    """Generate an operational metric not available in the relational Olist tables."""
-
     if priority == "high":
         return rng.randint(3, 90)
     if priority == "medium":
@@ -598,11 +549,8 @@ def build_resolution_time(
     priority: str,
     rng: random.Random,
 ) -> tuple[datetime | None, int | None]:
-    """Calculate closing time only for finalized tickets."""
-
     if status not in CLOSED_STATUSES:
         return None, None
-
     if priority == "high":
         resolution_hours = rng.randint(2, 72)
     elif priority == "medium":
@@ -612,9 +560,13 @@ def build_resolution_time(
     return opened_at + timedelta(hours=resolution_hours), resolution_hours
 
 
-def build_agent(issue_type: str, fake: Faker, rng: random.Random) -> dict[str, str]:
-    """Generate synthetic support-agent data, not copied from Olist entities."""
+def pick_agent(issue_type: str, agents_by_team: dict[str, list[str]], rng: random.Random) -> str:
+    team = AGENT_TEAMS[issue_type]
+    pool = agents_by_team.get(team) or agents_by_team[next(iter(agents_by_team))]
+    return rng.choice(pool)
 
+
+def build_agent(issue_type: str, fake: Faker, rng: random.Random) -> dict[str, str]:
     return {
         "agent_id": f"agt_{rng.randint(1000, 9999)}",
         "team": AGENT_TEAMS[issue_type],
@@ -628,17 +580,11 @@ def build_resolution(
     resolution_hours: int | None,
     rng: random.Random,
 ) -> dict[str, object]:
-    """Build operational outcome information."""
-
     requires_seller_action = issue_type in {
-        "damaged_package",
-        "wrong_item",
-        "return_exchange",
-        "seller_stock_question",
-        "warranty_question",
+        "damaged_package", "wrong_item", "return_exchange",
+        "seller_stock_question", "warranty_question",
     }
     compensation_pool = COMPENSATION_OPTIONS.get(issue_type, COMPENSATION_OPTIONS["default"])
-
     if status in CLOSED_STATUSES:
         outcome = "solved" if status == "resolved" else "closed_without_followup"
         compensation = rng.choice(compensation_pool)
@@ -651,7 +597,6 @@ def build_resolution(
     else:
         outcome = "waiting_customer_response"
         compensation = None
-
     return {
         "outcome": outcome,
         "resolution_hours": resolution_hours,
@@ -669,12 +614,9 @@ def build_messages(
     fake: Faker,
     rng: random.Random,
 ) -> list[dict[str, str]]:
-    """Create nested messages to keep the document NoSQL-shaped."""
-
     customer_text = build_customer_message(issue_type, fake, rng)
     agent_text = build_agent_message(status, fake, rng)
     first_response_at = opened_at + timedelta(minutes=first_response_minutes)
-
     return [
         {
             "message_id": f"{ticket_id}_msg_001",
@@ -692,15 +634,11 @@ def build_messages(
 
 
 def build_customer_message(issue_type: str, fake: Faker, rng: random.Random) -> str:
-    """Generate support text, not a purchase review."""
-
     prefix = rng.choice(CUSTOMER_MESSAGE_TEMPLATES[issue_type])
     return f"{prefix} {fake.sentence(nb_words=rng.randint(6, 12))}"
 
 
 def build_agent_message(status: str, fake: Faker, rng: random.Random) -> str:
-    """Generate a support-agent response."""
-
     prefix = rng.choice(AGENT_MESSAGE_TEMPLATES[status])
     return f"{prefix} {fake.sentence(nb_words=rng.randint(6, 12))}"
 
@@ -712,147 +650,89 @@ def validate_support_tickets(
     start_date: date,
     end_date: date,
 ) -> Counter[int]:
-    """Validate that generated data is complementary and relatable to Olist."""
-
     assert len(tickets) >= minimum_count, "Generated record count is below the requested minimum."
 
     ticket_ids = [str(ticket["ticket_id"]) for ticket in tickets]
     assert len(ticket_ids) == len(set(ticket_ids)), "ticket_id values must be unique."
 
-    valid_pairs = {
-        (order_reference.order_id, order_reference.customer_id)
-        for order_reference in order_references
-    }
+    valid_pairs = {(r.order_id, r.customer_id) for r in order_references}
     opened_at_years: Counter[int] = Counter()
     expected_issue_types = {
-        issue_type
-        for issue_options in ISSUE_WEIGHTS.values()
-        for issue_type, _ in issue_options
+        issue_type for issue_options in ISSUE_WEIGHTS.values() for issue_type, _ in issue_options
     }
     expected_channels = {channel for channel, _ in CHANNEL_WEIGHTS}
     expected_statuses = {status for status, _ in STATUS_WEIGHTS}
 
     for ticket in tickets:
-        assert set(REQUIRED_FIELDS).issubset(ticket), (
-            "A generated support ticket is missing required fields."
-        )
-        assert "review_score" not in ticket, "Support tickets must not copy review fields."
-        assert "review_comment_message" not in ticket, (
-            "Support tickets must not copy review comment fields."
-        )
-        assert (ticket["order_id"], ticket["customer_id"]) in valid_pairs, (
-            "Generated order/customer pair does not exist in the source Olist data."
-        )
-        assert ticket["issue_type"] in expected_issue_types, "Unexpected issue_type."
-        assert ticket["channel"] in expected_channels, "Unexpected support channel."
-        assert ticket["status"] in expected_statuses, "Unexpected ticket status."
-        assert ticket["priority"] in SLA_TARGET_HOURS, "Unexpected ticket priority."
-        assert isinstance(ticket["messages"], list) and ticket["messages"], (
-            "messages must be a non-empty array."
-        )
+        assert set(REQUIRED_FIELDS).issubset(ticket), "A generated support ticket is missing required fields."
+        assert "review_score" not in ticket
+        assert "review_comment_message" not in ticket
+        assert (ticket["order_id"], ticket["customer_id"]) in valid_pairs
+        assert ticket["issue_type"] in expected_issue_types
+        assert ticket["channel"] in expected_channels
+        assert ticket["status"] in expected_statuses
+        assert ticket["priority"] in SLA_TARGET_HOURS
+        assert ticket["agent_id"], "agent_id must be set."
+        assert isinstance(ticket["messages"], list) and ticket["messages"]
 
         opened_at = parse_created_at(str(ticket["opened_at"]))
-        assert start_date <= opened_at.date() <= end_date, (
-            "opened_at is outside the accepted date window."
-        )
+        assert start_date <= opened_at.date() <= end_date
         opened_at_years[opened_at.year] += 1
 
         closed_at_raw = ticket.get("closed_at")
         if ticket["status"] in CLOSED_STATUSES:
-            assert closed_at_raw, "Closed tickets must include closed_at."
-            assert parse_created_at(str(closed_at_raw)) > opened_at, (
-                "closed_at must be after opened_at."
-            )
+            assert closed_at_raw
+            assert parse_created_at(str(closed_at_raw)) > opened_at
         else:
-            assert closed_at_raw is None, "Open tickets must not include closed_at."
+            assert closed_at_raw is None
 
     expected_years = set(range(start_date.year, end_date.year + 1))
-    assert expected_years.issubset(opened_at_years), (
-        "The generated dataset must include records in every year of the configured range."
-    )
+    assert expected_years.issubset(opened_at_years)
     return opened_at_years
 
 
 def parse_created_at(value: str) -> datetime:
-    """Parse a serialized UTC timestamp."""
-
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
 
 def format_datetime(value: datetime) -> str:
-    """Serialize datetime as UTC ISO-8601 with Z suffix."""
-
     return value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
-def write_json(records: Iterable[dict[str, object]], output_path: Path) -> None:
-    """Write all records as a JSON array."""
-
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("w", encoding="utf-8", newline="\n") as output_file:
-        json.dump(list(records), output_file, ensure_ascii=False, indent=2)
-
-
-def build_object_key(prefix: str, execution_date: date) -> str:
-    """Build the object key inside the Landing bucket."""
-
-    return str(PurePosixPath(prefix) / execution_date.isoformat() / DEFAULT_OBJECT_NAME)
-
-
-def upload_json(s3_client, bucket_name: str, object_key: str, file_path: Path) -> None:
-    """Upload generated JSON to MinIO."""
-
-    with file_path.open("rb") as file_obj:
-        s3_client.upload_fileobj(
-            file_obj,
-            bucket_name,
-            object_key,
-            ExtraArgs={"ContentType": "application/json"},
-        )
-
-
-def print_summary(
-    records: Sequence[dict[str, object]],
-    bucket_name: str,
-    object_key: str | None,
-    orders_source: str,
-    year_counts: Counter[int],
-) -> None:
-    """Print a small execution summary."""
-
+def print_summary(records: Sequence[dict], orders_source: str, year_counts: Counter[int]) -> None:
     summary = {
-        "dataset": "support_tickets_nosql",
-        "records_generated": len(records),
+        "dataset": "support_tickets",
+        "records_inserted": len(records),
         "orders_source": orders_source,
-        "destination_bucket": bucket_name,
-        "destination_key": object_key,
+        "destination": "supabase:support_tickets",
         "year_distribution": dict(sorted(year_counts.items())),
     }
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 
 def main() -> int:
-    """Run generation, validation, local write and optional upload."""
-
     repo_root = Path(__file__).resolve().parents[2]
     load_env_file(repo_root / ".env")
     args = parse_args()
-    config = build_minio_config(args)
+
+    dsn = args.supabase_url or os.getenv("SUPABASE_URL", "")
+    if not dsn:
+        raise RuntimeError(
+            "SUPABASE_URL não configurada. Defina no .env ou passe --supabase-url."
+        )
 
     if args.orders_csv:
         order_references = load_order_references_from_csv(args.orders_csv)
         orders_source = str(args.orders_csv)
     else:
-        s3_client = create_s3_client(config)
-        order_references, resolved_orders_key = load_order_references_from_minio(
-            s3_client=s3_client,
-            bucket_name=config.bucket_name,
-            orders_key=args.orders_key,
-        )
-        orders_source = f"s3://{config.bucket_name}/{resolved_orders_key}"
+        order_references = load_order_references_from_supabase(dsn)
+        orders_source = "supabase:olist_orders_dataset.csv"
+
+    agents_by_team = load_agents_from_supabase(dsn)
 
     records = generate_support_tickets(
         order_references=order_references,
+        agents_by_team=agents_by_team,
         record_count=args.record_count,
         start_date=args.start_date,
         end_date=args.end_date,
@@ -866,59 +746,9 @@ def main() -> int:
         end_date=args.end_date,
     )
 
-    object_key = build_object_key(config.prefix, datetime.now(timezone.utc).date())
-    temp_output: Path | None = None
-
-    try:
-        if args.output_file:
-            output_path = args.output_file
-        else:
-            temp_file = tempfile.NamedTemporaryFile(
-                mode="w",
-                suffix=".json",
-                prefix="support_tickets_nosql_",
-                delete=False,
-                encoding="utf-8",
-            )
-            temp_file.close()
-            temp_output = Path(temp_file.name)
-            output_path = temp_output
-
-        write_json(records, output_path)
-
-        if args.skip_upload:
-            print_summary(
-                records,
-                bucket_name=config.bucket_name,
-                object_key=None,
-                orders_source=orders_source,
-                year_counts=year_counts,
-            )
-            print(f"Local JSON generated at: {output_path}")
-            return 0
-
-        if args.orders_csv:
-            s3_client = create_s3_client(config)
-
-        upload_json(
-            s3_client=s3_client,
-            bucket_name=config.bucket_name,
-            object_key=object_key,
-            file_path=output_path,
-        )
-        print_summary(
-            records,
-            bucket_name=config.bucket_name,
-            object_key=object_key,
-            orders_source=orders_source,
-            year_counts=year_counts,
-        )
-        return 0
-    except (BotoCoreError, ClientError) as exc:
-        raise RuntimeError(f"Failed to interact with MinIO: {exc}") from exc
-    finally:
-        if temp_output and temp_output.exists():
-            temp_output.unlink()
+    insert_into_supabase(dsn, records)
+    print_summary(records, orders_source, year_counts)
+    return 0
 
 
 if __name__ == "__main__":

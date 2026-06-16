@@ -1,6 +1,6 @@
 # Arquitetura
 
-Este projeto implementa uma pipeline de engenharia de dados baseada na arquitetura **Medallion**, utilizando duas fontes de dados complementares: o dataset de e-commerce da Olist e um conjunto de support tickets NoSQL. O fluxo contempla ingestão, armazenamento, transformação e disponibilização dos dados para análise.
+Este projeto implementa uma pipeline de engenharia de dados baseada na arquitetura **Medallion**. O **Supabase (PostgreSQL)** é a única fonte de verdade — todos os dados das camadas medalhão (Landing, Bronze, Silver e Gold) têm origem no banco do Supabase. O fluxo contempla ingestão, armazenamento, transformação e disponibilização dos dados para análise.
 
 ---
 
@@ -8,8 +8,7 @@ Este projeto implementa uma pipeline de engenharia de dados baseada na arquitetu
 
 ```mermaid
 flowchart LR
-    A1[Kaggle - Olist CSV] --> B[Landing - MinIO]
-    A2[Support Tickets NoSQL] --> B
+    A[Supabase - PostgreSQL] --> B[Landing - MinIO]
 
     B --> C[Bronze - PySpark + Delta Lake]
     C --> D[Silver - PySpark + Delta Lake]
@@ -24,27 +23,23 @@ flowchart LR
 
 ---
 
-## Fontes de Dados
+## Fonte de Dados
 
-O projeto combina duas origens distintas na camada Landing:
+O projeto utiliza o **Supabase (PostgreSQL)** como única origem de dados, contendo 12 tabelas:
 
-### Dataset Olist (CSV)
-
-Conjunto público de e-commerce brasileiro disponibilizado no Kaggle, com aproximadamente 100 mil pedidos reais entre 2016 e 2018. Composto por 9 arquivos CSV com informações sobre pedidos, clientes, produtos, vendedores, pagamentos, avaliações e geolocalização.
-
-### Support Tickets NoSQL (JSON)
-
-Conjunto complementar de dados sintéticos que simula tickets de suporte ao cliente, gerados com base nos `order_id` e `customer_id` reais do Olist. Adiciona informações operacionais não presentes nas tabelas relacionais, como canal de atendimento, prioridade, SLA, agente responsável e histórico de mensagens.
-
-> O arquivo é nomeado `reviews_nosql.json` para manter compatibilidade com o restante da pipeline.
+- **9 tabelas do dataset Olist** — dados públicos de e-commerce brasileiro com aproximadamente 100 mil pedidos reais entre 2016 e 2018, cobrindo pedidos, clientes, produtos, vendedores, pagamentos, avaliações e geolocalização.
+- **3 tabelas sintéticas geradas com Faker** — simulam a operação de suporte ao cliente vinculada aos pedidos Olist:
+  - `agents` — agentes de suporte (50 agentes, 10 por equipe)
+  - `support_tickets` — tickets de atendimento com canal, prioridade, SLA e resolução
+  - `support_ticket_messages` — histórico de mensagens por ticket
 
 ---
 
 ## Fluxo de Dados
 
-1. Os dados CSV do Olist são extraídos do Kaggle e armazenados na camada **Landing** no MinIO.
-2. Os support tickets NoSQL são gerados sinteticamente (ou exportados do Supabase) e armazenados também na camada **Landing**.
-3. A camada **Bronze** lê ambas as fontes via PySpark, adiciona metadados de rastreabilidade e persiste em Delta Lake.
+1. Os scripts `generate_agents.py` e `generate_support_tickets_nosql.py` populam as tabelas sintéticas no Supabase.
+2. O notebook `00_download_olist.ipynb` conecta ao Supabase, extrai as 12 tabelas como CSV e faz upload para a camada **Landing** no MinIO.
+3. A camada **Bronze** lê os 12 CSVs via PySpark, adiciona metadados de rastreabilidade e persiste em Delta Lake.
 4. A camada **Silver** aplica limpeza, tipagem, integração entre os datasets e transformações de negócio.
 5. A camada **Gold** disponibiliza tabelas analíticas e métricas otimizadas para consumo.
 6. O **Metabase** consome os dados da camada Gold para geração de dashboards interativos.
@@ -56,8 +51,7 @@ Conjunto complementar de dados sintéticos que simula tickets de suporte ao clie
 
 | Componente | Tecnologia | Descrição |
 |---|---|---|
-| Fonte relacional | Kaggle | Dataset público de e-commerce da Olist (CSV) |
-| Fonte NoSQL | Supabase / geração sintética | Support tickets vinculados aos pedidos Olist (JSON) |
+| Fonte de Dados | Supabase (PostgreSQL) | Fonte única — 9 tabelas Olist + 3 tabelas sintéticas |
 | Armazenamento | MinIO | Data Lake compatível com S3 |
 | Processamento | PySpark + Delta Lake | Transformações, validações e persistência em camadas |
 | Orquestração | Apache Airflow | Agendamento e automação dos pipelines |
@@ -71,21 +65,27 @@ Conjunto complementar de dados sintéticos que simula tickets de suporte ao clie
 
 ### Landing
 
-Armazena os dados brutos sem nenhuma transformação, preservando o formato original de cada fonte.
+Armazena os CSVs extraídos do Supabase sem nenhuma transformação — 12 arquivos planos no bucket `landing`.
 
 ```
 landing/
-├── olist/
-│   └── YYYY-MM-DD/
-│       └── *.csv          ← 9 arquivos do dataset Olist
-└── nosql/
-    └── YYYY-MM-DD/
-        └── reviews_nosql.json   ← support tickets
+├── olist_customers_dataset.csv
+├── olist_geolocation_dataset.csv
+├── olist_order_items_dataset.csv
+├── olist_order_payments_dataset.csv
+├── olist_order_reviews_dataset.csv
+├── olist_orders_dataset.csv
+├── olist_products_dataset.csv
+├── olist_sellers_dataset.csv
+├── product_category_name_translation.csv
+├── agents.csv
+├── support_tickets.csv
+└── support_ticket_messages.csv
 ```
 
 ### Bronze
 
-Converte os dados brutos para Delta Lake, adiciona metadados de ingestão (`_ingestion_timestamp`, `_source_file`) e executa validações de qualidade. Nenhuma transformação de negócio é aplicada nesta etapa.
+Converte os 12 CSVs para Delta Lake, adiciona metadados de ingestão (`_ingestion_timestamp`, `_source_file`) e valida a escrita. Nenhuma transformação de negócio é aplicada nesta etapa.
 
 ```
 bronze/
@@ -93,12 +93,14 @@ bronze/
 ├── olist_customers_dataset/
 ├── olist_products_dataset/
 ├── ... (demais tabelas Olist)
-└── reviews_nosql/          ← support tickets em Delta Lake
+├── agents/
+├── support_tickets/
+└── support_ticket_messages/
 ```
 
 ### Silver
 
-Aplica limpeza, padronização de tipos, tratamento de nulos e integração entre os datasets relacionais e os support tickets. Serve como base confiável para a camada analítica.
+Aplica limpeza, padronização de tipos, tratamento de nulos e integração entre os datasets. Serve como base confiável para a camada analítica.
 
 ### Gold
 
