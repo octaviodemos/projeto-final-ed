@@ -90,7 +90,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
     <a href=".." title="Projeto Final - Engenharia de Dados SATC" class="md-header__button md-logo" aria-label="Projeto Final - Engenharia de Dados SATC" data-md-component="logo">
       
@@ -207,14 +209,8 @@
     
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -376,7 +372,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -588,54 +590,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fontes-de-dados" class="md-nav__link">
+  <a href="#fonte-de-dados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fontes de Dados
+        Fonte de Dados
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Fontes de Dados">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#job-01a-csvs-olist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job 01a — CSVs Olist
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#job-01b-support-tickets-nosql" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job 01b — Support Tickets NoSQL
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#jobs-de-ingestao" class="md-nav__link">
+  <a href="#job-de-ingestao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Jobs de Ingestão
+        Job de Ingestão
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Jobs de Ingestão">
+    <nav class="md-nav" aria-label="Job de Ingestão">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -649,19 +623,19 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#notebooks01b_nosql_to_bronzeipynb" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-execucao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        notebooks/01b_nosql_to_bronze.ipynb
+        Fluxo de Execução
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -678,10 +652,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-leitura-com-inferencia-de-schema-job-01b" class="md-nav__link">
+  <a href="#1-leitura-com-inferencia-de-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Leitura com Inferência de Schema (Job 01b)
+        1. Leitura com Inferência de Schema
       
     </span>
   </a>
@@ -689,10 +663,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-conversao-de-timestamps" class="md-nav__link">
+  <a href="#2-adicao-de-metadados-de-ingestao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Conversão de Timestamps
+        2. Adição de Metadados de Ingestão
       
     </span>
   </a>
@@ -700,32 +674,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-inclusao-de-metadados-de-ingestao" class="md-nav__link">
+  <a href="#3-persistencia-em-delta-lake" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Inclusão de Metadados de Ingestão
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-preservacao-de-campos-aninhados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Preservação de Campos Aninhados
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-persistencia-em-delta-lake" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Persistência em Delta Lake
+        3. Persistência em Delta Lake
       
     </span>
   </a>
@@ -734,6 +686,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao-das-tabelas-delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificação das Tabelas Delta
+      
+    </span>
+  </a>
   
 </li>
       
@@ -750,10 +713,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tabelas-csv-olist" class="md-nav__link">
+  <a href="#schema-agents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tabelas CSV Olist
+        Schema — agents
       
     </span>
   </a>
@@ -761,10 +724,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tabela-reviews_nosql-support-tickets" class="md-nav__link">
+  <a href="#schema-support_tickets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tabela reviews_nosql (Support Tickets)
+        Schema — support_tickets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-support_ticket_messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema — support_ticket_messages
       
     </span>
   </a>
@@ -788,113 +762,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#qualidade-de-dados" class="md-nav__link">
+  <a href="#tratamento-de-erros" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Qualidade de Dados
+        Tratamento de Erros
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Qualidade de Dados">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#job-01a-csvs-olist_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job 01a — CSVs Olist
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#job-01b-support-tickets-nosql_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job 01b — Support Tickets NoSQL
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Job 01b — Support Tickets NoSQL">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#existencia-de-dados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Existência de Dados
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deteccao-de-shape-do-documento" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Detecção de Shape do Documento
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validacao-de-tipos-dos-campos-aninhados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validação de Tipos dos Campos Aninhados
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validacao-de-timestamps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validação de Timestamps
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verificacao-de-campos-obrigatorios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Verificação de Campos Obrigatórios
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validacao-pos-escrita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validação Pós-Escrita
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1074,54 +948,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fontes-de-dados" class="md-nav__link">
+  <a href="#fonte-de-dados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fontes de Dados
+        Fonte de Dados
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Fontes de Dados">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#job-01a-csvs-olist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job 01a — CSVs Olist
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#job-01b-support-tickets-nosql" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job 01b — Support Tickets NoSQL
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#jobs-de-ingestao" class="md-nav__link">
+  <a href="#job-de-ingestao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Jobs de Ingestão
+        Job de Ingestão
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Jobs de Ingestão">
+    <nav class="md-nav" aria-label="Job de Ingestão">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1135,19 +981,19 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#notebooks01b_nosql_to_bronzeipynb" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-execucao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        notebooks/01b_nosql_to_bronze.ipynb
+        Fluxo de Execução
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1164,10 +1010,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-leitura-com-inferencia-de-schema-job-01b" class="md-nav__link">
+  <a href="#1-leitura-com-inferencia-de-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Leitura com Inferência de Schema (Job 01b)
+        1. Leitura com Inferência de Schema
       
     </span>
   </a>
@@ -1175,10 +1021,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-conversao-de-timestamps" class="md-nav__link">
+  <a href="#2-adicao-de-metadados-de-ingestao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Conversão de Timestamps
+        2. Adição de Metadados de Ingestão
       
     </span>
   </a>
@@ -1186,32 +1032,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-inclusao-de-metadados-de-ingestao" class="md-nav__link">
+  <a href="#3-persistencia-em-delta-lake" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Inclusão de Metadados de Ingestão
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-preservacao-de-campos-aninhados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Preservação de Campos Aninhados
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-persistencia-em-delta-lake" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Persistência em Delta Lake
+        3. Persistência em Delta Lake
       
     </span>
   </a>
@@ -1220,6 +1044,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao-das-tabelas-delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificação das Tabelas Delta
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1236,10 +1071,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tabelas-csv-olist" class="md-nav__link">
+  <a href="#schema-agents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tabelas CSV Olist
+        Schema — agents
       
     </span>
   </a>
@@ -1247,10 +1082,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tabela-reviews_nosql-support-tickets" class="md-nav__link">
+  <a href="#schema-support_tickets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tabela reviews_nosql (Support Tickets)
+        Schema — support_tickets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-support_ticket_messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema — support_ticket_messages
       
     </span>
   </a>
@@ -1274,113 +1120,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#qualidade-de-dados" class="md-nav__link">
+  <a href="#tratamento-de-erros" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Qualidade de Dados
+        Tratamento de Erros
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Qualidade de Dados">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#job-01a-csvs-olist_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job 01a — CSVs Olist
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#job-01b-support-tickets-nosql_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job 01b — Support Tickets NoSQL
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Job 01b — Support Tickets NoSQL">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#existencia-de-dados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Existência de Dados
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deteccao-de-shape-do-documento" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Detecção de Shape do Documento
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validacao-de-tipos-dos-campos-aninhados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validação de Tipos dos Campos Aninhados
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validacao-de-timestamps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validação de Timestamps
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verificacao-de-campos-obrigatorios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Verificação de Campos Obrigatórios
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validacao-pos-escrita" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validação Pós-Escrita
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1419,275 +1165,184 @@
 <p>Documentação da camada Bronze da pipeline.</p>
 <h2 id="objetivo">Objetivo</h2>
 <p>A camada Bronze é responsável por armazenar os dados ingeridos da camada Landing com o mínimo de transformação possível, preservando a estrutura original da fonte e adicionando metadados técnicos de ingestão.</p>
-<p>Nesta etapa, dois tipos de dados são processados:</p>
-<ul>
-<li>Os <strong>arquivos CSV do Olist</strong> são lidos via Spark e persistidos como tabelas Delta Lake.</li>
-<li>Os <strong>support tickets NoSQL</strong> em formato JSON são convertidos para Delta Lake com validação de schema e rastreabilidade.</li>
-</ul>
-<p>Ambos são armazenados no bucket Bronze do MinIO, garantindo padronização de tipos e persistência otimizada para as próximas camadas da arquitetura.</p>
+<p>Nesta etapa, todas as tabelas — tanto os CSVs do Olist quanto as tabelas de suporte exportadas do Supabase — são lidas via PySpark e persistidas como Delta Lake no bucket Bronze do MinIO.</p>
 <hr />
 <h2 id="arquitetura-da-carga">Arquitetura da Carga</h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Kaggle] --&gt; B[Download Dataset Olist]
-    B --&gt; C[Landing - MinIO]
-
-    subgraph Landing
-        D[Dados CSV]
-        E[Support Tickets JSON]
-    end
-
-    C --&gt; D
-    C --&gt; E
-
-    D --&gt; F[Apache Spark - 01a]
-    E --&gt; G[Apache Spark - 01b]
-
-    F --&gt; H[Validações]
-    G --&gt; I[Validações]
-
-    H --&gt; J[Delta Lake Bronze]
-    I --&gt; J</code></pre>
+    A[Kaggle - CSVs Olist] --&gt; B[Landing - MinIO]
+    C[Supabase] --&gt; D[generate_agents.py]
+    D --&gt; E[agents.csv]
+    C --&gt; F[generate_support_tickets_nosql.py]
+    F --&gt; G[support_tickets.csv\nsupport_ticket_messages.csv]
+    E --&gt; B
+    G --&gt; B
+    B --&gt; H[01a_landing_to_bronze.ipynb\nPySpark + Delta Lake]
+    H --&gt; I[Bronze - MinIO]</code></pre>
 <hr />
-<h2 id="fontes-de-dados">Fontes de Dados</h2>
-<h3 id="job-01a-csvs-olist">Job 01a — CSVs Olist</h3>
-<table>
-<thead>
-<tr>
-<th>Propriedade</th>
-<th>Valor</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Origem</td>
-<td>Landing Zone (MinIO)</td>
-</tr>
-<tr>
-<td>Formato de Entrada</td>
-<td>CSV</td>
-</tr>
-<tr>
-<td>Arquivos Esperados</td>
-<td>9 tabelas Olist</td>
-</tr>
-<tr>
-<td>Formato de Saída</td>
-<td>Delta Lake</td>
-</tr>
-<tr>
-<td>Destino</td>
-<td>Bucket Bronze</td>
-</tr>
-</tbody>
-</table>
-<h3 id="job-01b-support-tickets-nosql">Job 01b — Support Tickets NoSQL</h3>
-<table>
-<thead>
-<tr>
-<th>Propriedade</th>
-<th>Valor</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Origem</td>
-<td>Landing Zone (MinIO)</td>
-</tr>
-<tr>
-<td>Formato de Entrada</td>
-<td>JSON</td>
-</tr>
-<tr>
-<td>Arquivo Esperado</td>
-<td><code>reviews_nosql.json</code></td>
-</tr>
-<tr>
-<td>Formato de Saída</td>
-<td>Delta Lake</td>
-</tr>
-<tr>
-<td>Destino</td>
-<td>Bucket Bronze</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="jobs-de-ingestao">Jobs de Ingestão</h2>
-<h3 id="notebooks01a_landing_to_bronzeipynb"><code>notebooks/01a_landing_to_bronze.ipynb</code></h3>
-<p>Lê os 9 arquivos CSV do bucket <code>landing</code> e persiste cada um como uma tabela Delta separada no bucket <code>bronze</code>.</p>
-<p><strong>Fluxo de execução:</strong></p>
-<ol>
-<li>Carrega as variáveis de ambiente do arquivo <code>.env</code>.</li>
-<li>Inicializa a SparkSession com suporte ao Delta Lake e integração S3A para MinIO.</li>
-<li>Para cada tabela em <code>EXPECTED_TABLES</code>, lê o CSV correspondente do bucket <code>landing</code>.</li>
-<li>Adiciona metadados de ingestão (<code>_ingestion_timestamp</code>, <code>_source_file</code>).</li>
-<li>Persiste em formato Delta no bucket <code>bronze</code>.</li>
-<li>Verifica o histórico Delta de cada tabela após a escrita.</li>
-<li>Encerra a SparkSession.</li>
-</ol>
-<p><strong>Orquestração via Papermill / Airflow:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>papermill<span class="w"> </span>notebooks/01a_landing_to_bronze.ipynb<span class="w"> </span>output.ipynb<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span>-p<span class="w"> </span>landing_bucket<span class="w"> </span>landing<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span>-p<span class="w"> </span>bronze_bucket<span class="w"> </span>bronze
-</code></pre></div>
-<p><strong>Tabelas ingeridas:</strong></p>
+<h2 id="fonte-de-dados">Fonte de Dados</h2>
+<p>Todas as 12 tabelas são lidas do bucket <code>landing</code> no MinIO como CSV e persistidas como Delta Lake no bucket <code>bronze</code>.</p>
 <table>
 <thead>
 <tr>
 <th>Tabela</th>
-<th>Caminho no Bronze</th>
+<th>Origem</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>olist_customers_dataset</code></td>
-<td><code>s3a://bronze/olist_customers_dataset</code></td>
+<td>Kaggle / Olist</td>
 </tr>
 <tr>
 <td><code>olist_geolocation_dataset</code></td>
-<td><code>s3a://bronze/olist_geolocation_dataset</code></td>
+<td>Kaggle / Olist</td>
 </tr>
 <tr>
 <td><code>olist_order_items_dataset</code></td>
-<td><code>s3a://bronze/olist_order_items_dataset</code></td>
+<td>Kaggle / Olist</td>
 </tr>
 <tr>
 <td><code>olist_order_payments_dataset</code></td>
-<td><code>s3a://bronze/olist_order_payments_dataset</code></td>
+<td>Kaggle / Olist</td>
 </tr>
 <tr>
 <td><code>olist_order_reviews_dataset</code></td>
-<td><code>s3a://bronze/olist_order_reviews_dataset</code></td>
+<td>Kaggle / Olist</td>
 </tr>
 <tr>
 <td><code>olist_orders_dataset</code></td>
-<td><code>s3a://bronze/olist_orders_dataset</code></td>
+<td>Kaggle / Olist</td>
 </tr>
 <tr>
 <td><code>olist_products_dataset</code></td>
-<td><code>s3a://bronze/olist_products_dataset</code></td>
+<td>Kaggle / Olist</td>
 </tr>
 <tr>
 <td><code>olist_sellers_dataset</code></td>
-<td><code>s3a://bronze/olist_sellers_dataset</code></td>
+<td>Kaggle / Olist</td>
 </tr>
 <tr>
 <td><code>product_category_name_translation</code></td>
-<td><code>s3a://bronze/product_category_name_translation</code></td>
+<td>Kaggle / Olist</td>
+</tr>
+<tr>
+<td><code>agents</code></td>
+<td>Supabase → <code>generate_agents.py</code></td>
+</tr>
+<tr>
+<td><code>support_tickets</code></td>
+<td>Supabase → <code>generate_support_tickets_nosql.py</code></td>
+</tr>
+<tr>
+<td><code>support_ticket_messages</code></td>
+<td>Supabase → <code>generate_support_tickets_nosql.py</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h3 id="notebooks01b_nosql_to_bronzeipynb"><code>notebooks/01b_nosql_to_bronze.ipynb</code></h3>
-<p>Lê o arquivo <code>reviews_nosql.json</code> do bucket <code>landing</code> e persiste como tabela Delta no bucket <code>bronze</code>.</p>
-<p><strong>Fluxo de execução:</strong></p>
+<h2 id="job-de-ingestao">Job de Ingestão</h2>
+<h3 id="notebooks01a_landing_to_bronzeipynb"><code>notebooks/01a_landing_to_bronze.ipynb</code></h3>
+<p>Lê as 12 tabelas CSV do bucket <code>landing</code> e persiste cada uma como tabela Delta separada no bucket <code>bronze</code>.</p>
+<p><strong>Execução via Papermill:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uv<span class="w"> </span>run<span class="w"> </span>papermill<span class="w"> </span>notebooks/01a_landing_to_bronze.ipynb<span class="w"> </span>output.ipynb<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span>-p<span class="w"> </span>landing_bucket<span class="w"> </span>landing<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span>-p<span class="w"> </span>bronze_bucket<span class="w"> </span>bronze
+</code></pre></div>
+<p><strong>Parâmetros:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>landing_bucket</code></td>
+<td><code>landing</code></td>
+<td>Bucket de origem no MinIO</td>
+</tr>
+<tr>
+<td><code>bronze_bucket</code></td>
+<td><code>bronze</code></td>
+<td>Bucket de destino no MinIO</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="fluxo-de-execucao">Fluxo de Execução</h2>
 <ol>
 <li>Carrega as variáveis de ambiente do arquivo <code>.env</code>.</li>
-<li>Cria a conexão com o MinIO via boto3.</li>
-<li>Localiza o arquivo <code>reviews_nosql.json</code> no prefixo <code>nosql/</code>.</li>
-<li>Inicializa a SparkSession com suporte ao Delta Lake e S3A.</li>
-<li>Lê o JSON e converte os campos de timestamp (<code>opened_at</code>, <code>closed_at</code>, <code>created_at</code>).</li>
-<li>Adiciona metadados de ingestão (<code>_ingestion_timestamp</code>, <code>_source_file</code>).</li>
-<li>Detecta o shape do documento (support tickets ou reviews).</li>
-<li>Executa validações de qualidade no DataFrame.</li>
-<li>Persiste em Delta Lake no bucket <code>bronze</code>.</li>
-<li>Relê a tabela Delta e revalida o schema persistido.</li>
-<li>Gera resumo da execução.</li>
+<li>Inicializa a SparkSession com suporte ao Delta Lake e integração S3A para MinIO.</li>
+<li>Para cada uma das 12 tabelas em <code>EXPECTED_TABLES</code>:</li>
+<li>Lê o CSV correspondente do bucket <code>landing</code>.</li>
+<li>Adiciona os metadados de ingestão (<code>_ingestion_timestamp</code>, <code>_source_file</code>).</li>
+<li>Persiste em formato Delta no bucket <code>bronze</code>.</li>
+<li>Verifica o histórico Delta de cada tabela após a escrita via <code>DeltaTable.history()</code>.</li>
+<li>Encerra a SparkSession.</li>
+<li>Lança <code>RuntimeError</code> se qualquer tabela falhar.</li>
 </ol>
-<p><strong>Orquestração via Papermill / Airflow:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>papermill<span class="w"> </span>notebooks/01b_nosql_to_bronze.ipynb<span class="w"> </span>output.ipynb<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>-p<span class="w"> </span>input_bucket<span class="w"> </span>landing<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span>-p<span class="w"> </span>output_bucket<span class="w"> </span>bronze<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span>-p<span class="w"> </span>output_prefix<span class="w"> </span>reviews_nosql
-</code></pre></div>
 <hr />
 <h2 id="transformacoes-aplicadas">Transformações Aplicadas</h2>
-<p>A camada Bronze realiza apenas transformações estruturais necessárias para garantir consistência e rastreabilidade.</p>
-<h3 id="1-leitura-com-inferencia-de-schema-job-01b">1. Leitura com Inferência de Schema (Job 01b)</h3>
-<p>O Spark lê o JSON com inferência automática de schema, mantendo a estrutura original dos documentos NoSQL — incluindo campos aninhados (<code>agent</code>, <code>resolution</code>) e arrays (<code>messages</code>).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">source_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;multiLine&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span>
+<p>A camada Bronze realiza apenas transformações estruturais mínimas.</p>
+<h3 id="1-leitura-com-inferencia-de-schema">1. Leitura com Inferência de Schema</h3>
+<p>O Spark lê cada CSV com inferência automática de tipos, preservando os dados originais.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">spark</span><span class="o">.</span><span class="n">read</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;inferSchema&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;multiLine&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;escape&quot;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="n">source_path</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">)</span>
 </code></pre></div>
-<hr />
-<h3 id="2-conversao-de-timestamps">2. Conversão de Timestamps</h3>
-<p>Os campos de data/hora chegam como texto no JSON e são convertidos para <code>TimestampType</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">parse_timestamp_if_present</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">if</span> <span class="n">column_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        <span class="k">return</span> <span class="n">df</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span> <span class="n">TIMESTAMP_PATTERN</span><span class="p">))</span>
-</code></pre></div>
-<p>Campos convertidos: <code>opened_at</code>, <code>closed_at</code>, <code>created_at</code>.</p>
-<p>Formato esperado:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>2025-01-10T15:30:00Z
-</code></pre></div>
-<hr />
-<h3 id="3-inclusao-de-metadados-de-ingestao">3. Inclusão de Metadados de Ingestão</h3>
-<p>Para aumentar a rastreabilidade da carga, são adicionados dois campos técnicos em todos os jobs.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;_ingestion_timestamp&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">current_timestamp</span><span class="p">())</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;_source_file&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">input_file_name</span><span class="p">())</span>
+<h3 id="2-adicao-de-metadados-de-ingestao">2. Adição de Metadados de Ingestão</h3>
+<p>Para garantir rastreabilidade, dois campos técnicos são adicionados a todas as tabelas.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">df</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;_ingestion_timestamp&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">current_timestamp</span><span class="p">())</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;_source_file&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">))</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">)</span>
 </code></pre></div>
 <table>
 <thead>
 <tr>
 <th>Campo</th>
+<th>Tipo</th>
 <th>Descrição</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>_ingestion_timestamp</code></td>
+<td>timestamp</td>
 <td>Data e hora da carga</td>
 </tr>
 <tr>
 <td><code>_source_file</code></td>
-<td>Arquivo utilizado na ingestão</td>
+<td>string</td>
+<td>Nome do arquivo CSV de origem</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h3 id="4-preservacao-de-campos-aninhados">4. Preservação de Campos Aninhados</h3>
-<p>Os campos <code>agent</code>, <code>resolution</code> e <code>messages</code> mantêm sua estrutura original no Bronze.</p>
-<ul>
-<li><code>agent</code> → <code>StructType</code></li>
-<li><code>resolution</code> → <code>StructType</code></li>
-<li><code>messages</code> → <code>ArrayType</code></li>
-</ul>
-<p>Não é realizada explosão (<code>explode</code>) nem normalização nesta etapa, seguindo o princípio de mínima transformação da camada Bronze.</p>
-<p>Exemplo de <code>messages</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">[</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="p">{</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sup_abc123_msg_001&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">&quot;sender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;customer&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nt">&quot;sent_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2017-03-15T10:00:00Z&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Preciso de ajuda com o meu pedido.&quot;</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="p">{</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sup_abc123_msg_002&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="nt">&quot;sender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;support_agent&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="nt">&quot;sent_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2017-03-15T10:45:00Z&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Analisamos e enviamos as orientações necessárias.&quot;</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="p">]</span>
+<h3 id="3-persistencia-em-delta-lake">3. Persistência em Delta Lake</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">df</span><span class="o">.</span><span class="n">write</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  <span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;overwriteSchema&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  <span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
 </code></pre></div>
+<p>Benefícios do Delta Lake nesta etapa: schema enforcement, versionamento e suporte a ACID.</p>
 <hr />
-<h3 id="5-persistencia-em-delta-lake">5. Persistência em Delta Lake</h3>
-<p>Após as validações, os dados são persistidos em formato Delta.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  <span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="n">write_mode</span><span class="p">)</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;overwriteSchema&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  <span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+<h2 id="verificacao-das-tabelas-delta">Verificação das Tabelas Delta</h2>
+<p>Após a escrita de cada tabela, o job verifica o histórico Delta para confirmar que a operação foi registrada.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">dt</span> <span class="o">=</span> <span class="n">DeltaTable</span><span class="o">.</span><span class="n">forPath</span><span class="p">(</span><span class="n">spark</span><span class="p">,</span> <span class="n">target_path</span><span class="p">)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">history</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;operation&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
 </code></pre></div>
-<p>Benefícios do Delta Lake:</p>
-<ul>
-<li>Schema enforcement</li>
-<li>Versionamento</li>
-<li>Suporte a ACID</li>
-<li>Melhor integração com Spark</li>
-<li>Preparação para as camadas Silver e Gold</li>
-</ul>
 <hr />
 <h2 id="schema-bronze">Schema Bronze</h2>
-<h3 id="tabelas-csv-olist">Tabelas CSV Olist</h3>
-<p>Cada tabela mantém o schema original do CSV, acrescido dos metadados:</p>
+<p>Cada tabela mantém o schema original do CSV acrescido dos metadados:</p>
 <table>
 <thead>
 <tr>
@@ -1714,8 +1369,44 @@
 </tr>
 </tbody>
 </table>
-<hr />
-<h3 id="tabela-reviews_nosql-support-tickets">Tabela <code>reviews_nosql</code> (Support Tickets)</h3>
+<h3 id="schema-agents">Schema — <code>agents</code></h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agent_id</code></td>
+<td>string</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><code>alias</code></td>
+<td>string</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><code>team</code></td>
+<td>string</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><code>_ingestion_timestamp</code></td>
+<td>timestamp</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><code>_source_file</code></td>
+<td>string</td>
+<td>Sim</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-support_tickets">Schema — <code>support_tickets</code></h3>
 <table>
 <thead>
 <tr>
@@ -1741,6 +1432,11 @@
 <td>Sim</td>
 </tr>
 <tr>
+<td><code>agent_id</code></td>
+<td>string</td>
+<td>Sim</td>
+</tr>
+<tr>
 <td><code>channel</code></td>
 <td>string</td>
 <td>Sim</td>
@@ -1762,7 +1458,7 @@
 </tr>
 <tr>
 <td><code>opened_at</code></td>
-<td>timestamp</td>
+<td>string</td>
 <td>Sim</td>
 </tr>
 <tr>
@@ -1776,23 +1472,75 @@
 <td>Sim</td>
 </tr>
 <tr>
-<td><code>agent</code></td>
-<td>struct</td>
-<td>Sim</td>
-</tr>
-<tr>
 <td><code>closed_at</code></td>
-<td>timestamp</td>
+<td>string</td>
 <td>Não</td>
 </tr>
 <tr>
-<td><code>resolution</code></td>
-<td>struct</td>
+<td><code>resolution_outcome</code></td>
+<td>string</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><code>resolution_hours</code></td>
+<td>int</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><code>requires_seller_action</code></td>
+<td>boolean</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><code>resolution_compensation</code></td>
+<td>string</td>
+<td>Não</td>
+</tr>
+<tr>
+<td><code>_ingestion_timestamp</code></td>
+<td>timestamp</td>
 <td>Sim</td>
 </tr>
 <tr>
-<td><code>messages</code></td>
-<td>array</td>
+<td><code>_source_file</code></td>
+<td>string</td>
+<td>Sim</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-support_ticket_messages">Schema — <code>support_ticket_messages</code></h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message_id</code></td>
+<td>string</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><code>ticket_id</code></td>
+<td>string</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><code>sender</code></td>
+<td>string</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><code>sent_at</code></td>
+<td>string</td>
+<td>Sim</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>string</td>
 <td>Sim</td>
 </tr>
 <tr>
@@ -1809,96 +1557,37 @@
 </table>
 <hr />
 <h2 id="estrutura-no-minio">Estrutura no MinIO</h2>
-<p>Após a execução dos dois jobs, o bucket Bronze contém:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>bronze/
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>├── olist_customers_dataset/
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>│   ├── _delta_log/
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│   └── part-*.parquet
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>├── olist_geolocation_dataset/
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>├── olist_order_items_dataset/
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>├── olist_order_payments_dataset/
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>├── olist_order_reviews_dataset/
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>├── olist_orders_dataset/
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>├── olist_products_dataset/
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>├── olist_sellers_dataset/
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>├── product_category_name_translation/
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>└── reviews_nosql/
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    ├── _delta_log/
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    └── part-*.parquet
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>bronze/
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>├── olist_customers_dataset/
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>│   ├── _delta_log/
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│   └── part-*.parquet
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>├── olist_geolocation_dataset/
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>├── olist_order_items_dataset/
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>├── olist_order_payments_dataset/
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>├── olist_order_reviews_dataset/
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>├── olist_orders_dataset/
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>├── olist_products_dataset/
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>├── olist_sellers_dataset/
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>├── product_category_name_translation/
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>├── agents/
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>├── support_tickets/
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>└── support_ticket_messages/
 </code></pre></div>
 <hr />
-<h2 id="qualidade-de-dados">Qualidade de Dados</h2>
-<h3 id="job-01a-csvs-olist_1">Job 01a — CSVs Olist</h3>
-<p>Após a escrita de cada tabela Delta, o histórico é verificado via <code>DeltaTable.history()</code> para confirmar que a operação foi registrada corretamente.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">dt</span> <span class="o">=</span> <span class="n">DeltaTable</span><span class="o">.</span><span class="n">forPath</span><span class="p">(</span><span class="n">spark</span><span class="p">,</span> <span class="n">target_path</span><span class="p">)</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">history</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;operation&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-</code></pre></div>
-<p>Se qualquer tabela falhar na ingestão, o job finaliza com <code>RuntimeError</code> indicando quantas tabelas foram processadas com sucesso.</p>
-<hr />
-<h3 id="job-01b-support-tickets-nosql_1">Job 01b — Support Tickets NoSQL</h3>
-<h4 id="existencia-de-dados">Existência de Dados</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">df</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The NoSQL source produced zero rows.&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h4 id="deteccao-de-shape-do-documento">Detecção de Shape do Documento</h4>
-<p>O job identifica automaticamente se o documento é um support ticket ou um review, validando os campos presentes.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">detect_document_shape</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">columns</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="k">if</span> <span class="p">{</span><span class="s2">&quot;ticket_id&quot;</span><span class="p">,</span> <span class="s2">&quot;issue_type&quot;</span><span class="p">,</span> <span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="s2">&quot;agent&quot;</span><span class="p">,</span> <span class="s2">&quot;resolution&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">columns</span><span class="p">):</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="k">return</span> <span class="s2">&quot;support_tickets&quot;</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="k">if</span> <span class="p">{</span><span class="s2">&quot;review_id&quot;</span><span class="p">,</span> <span class="s2">&quot;sentiment&quot;</span><span class="p">,</span> <span class="s2">&quot;comment_text&quot;</span><span class="p">,</span> <span class="s2">&quot;tags&quot;</span><span class="p">,</span> <span class="s2">&quot;created_at&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">columns</span><span class="p">):</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>        <span class="k">return</span> <span class="s2">&quot;reviews&quot;</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported NoSQL document shape. Columns found: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h4 id="validacao-de-tipos-dos-campos-aninhados">Validação de Tipos dos Campos Aninhados</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_map</span><span class="p">[</span><span class="s2">&quot;agent&quot;</span><span class="p">],</span> <span class="n">StructType</span><span class="p">):</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Column &#39;agent&#39; must be preserved as StructType in Bronze.&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_map</span><span class="p">[</span><span class="s2">&quot;resolution&quot;</span><span class="p">],</span> <span class="n">StructType</span><span class="p">):</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Column &#39;resolution&#39; must be preserved as StructType in Bronze.&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_map</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">],</span> <span class="n">ArrayType</span><span class="p">):</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Column &#39;messages&#39; must be preserved as ArrayType in Bronze.&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h4 id="validacao-de-timestamps">Validação de Timestamps</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_map</span><span class="p">[</span><span class="s2">&quot;opened_at&quot;</span><span class="p">],</span> <span class="n">TimestampType</span><span class="p">):</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Column &#39;opened_at&#39; must be stored as TimestampType in Bronze.&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h4 id="verificacao-de-campos-obrigatorios">Verificação de Campos Obrigatórios</h4>
-<p>Não são permitidos valores nulos em:</p>
+<h2 id="tratamento-de-erros">Tratamento de Erros</h2>
 <ul>
-<li><code>ticket_id</code></li>
-<li><code>order_id</code></li>
-<li><code>customer_id</code></li>
-<li><code>opened_at</code></li>
-<li><code>_source_file</code></li>
-<li><code>messages</code> (também não pode ser array vazio)</li>
+<li>Se qualquer tabela falhar na ingestão, o erro é logado e o job continua para as demais.</li>
+<li>Ao final, se o número de tabelas processadas com sucesso for menor que 12, o job lança <code>RuntimeError</code>:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;ticket_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">()</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="o">|</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;order_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">()</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="o">|</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;customer_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">()</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="o">|</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;opened_at&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">()</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="o">|</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;_source_file&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">()</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="o">|</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">()</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    <span class="o">|</span> <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="p">)</span>
-</code></pre></div>
-<h4 id="validacao-pos-escrita">Validação Pós-Escrita</h4>
-<p>Após persistir os dados, a tabela Delta é relida e todas as validações são executadas novamente para garantir que o schema persistido permanece íntegro.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">persisted_df</span> <span class="o">=</span> <span class="n">read_back_delta</span><span class="p">(</span><span class="n">spark</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">persisted_document_shape</span> <span class="o">=</span> <span class="n">validate_bronze_dataframe</span><span class="p">(</span><span class="n">persisted_df</span><span class="p">)</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">if</span> <span class="n">persisted_document_shape</span> <span class="o">!=</span> <span class="n">document_shape</span><span class="p">:</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Persisted Delta table shape differs from the source DataFrame shape.&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">if</span> <span class="n">success_count</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">EXPECTED_TABLES</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="sa">f</span><span class="s2">&quot;Nem todas as tabelas foram ingeridas com sucesso! &quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">success_count</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">EXPECTED_TABLES</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="p">)</span>
 </code></pre></div>
 <hr />
 <h2 id="resultado">Resultado</h2>
-<p>Ao final da execução dos dois jobs:</p>
-<ul>
-<li>Os 9 CSVs do Olist estão persistidos como tabelas Delta no bucket <code>bronze</code>.</li>
-<li>Os support tickets NoSQL estão persistidos como tabela Delta em <code>bronze/reviews_nosql</code>.</li>
-<li>Todos os dados possuem metadados de rastreabilidade (<code>_ingestion_timestamp</code>, <code>_source_file</code>).</li>
-<li>As validações garantem a qualidade e integridade dos dados.</li>
-</ul>
-<p>Os dados ficam disponíveis na camada Bronze para consumo pelas etapas da camada Silver.</p>
+<p>Ao final da execução, as 12 tabelas ficam disponíveis no bucket <code>bronze</code> em formato Delta Lake, prontas para o processamento da camada Silver.</p>
 
 
 
@@ -1972,7 +1661,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.expand", "navigation.instant", "navigation.tracking", "search.highlight", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.expand", "navigation.instant", "navigation.tracking", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>

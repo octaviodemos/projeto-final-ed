@@ -90,7 +90,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
     <a href=".." title="Projeto Final - Engenharia de Dados SATC" class="md-header__button md-logo" aria-label="Projeto Final - Engenharia de Dados SATC" data-md-component="logo">
       
@@ -207,14 +209,8 @@
     
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -376,7 +372,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -604,10 +606,104 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#transformacoes" class="md-nav__link">
+  <a href="#formato-e-tabelas-presentes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Transformações
+        Formato e Tabelas Presentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regras-de-data-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regras de Data Quality
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regras de Data Quality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-snake_case-padronizacao-de-nomes-de-colunas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. snake_case — Padronização de nomes de colunas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-drop_duplicates-remocao-de-duplicatas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. drop_duplicates — Remoção de duplicatas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-drop_critical_nulls-remocao-de-nulos-em-colunas-chave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. drop_critical_nulls — Remoção de nulos em colunas-chave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-fill_optional_nulls-preenchimento-de-nulos-opcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. fill_optional_nulls — Preenchimento de nulos opcionais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-cast_types-garantia-de-tipos-corretos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. cast_types — Garantia de tipos corretos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadados-silver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadados Silver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-de-data-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log de Data Quality
       
     </span>
   </a>
@@ -626,10 +722,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modelo-de-dados" class="md-nav__link">
+  <a href="#resultado" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modelo de dados
+        Resultado
       
     </span>
   </a>
@@ -763,10 +859,104 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#transformacoes" class="md-nav__link">
+  <a href="#formato-e-tabelas-presentes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Transformações
+        Formato e Tabelas Presentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regras-de-data-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regras de Data Quality
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regras de Data Quality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-snake_case-padronizacao-de-nomes-de-colunas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. snake_case — Padronização de nomes de colunas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-drop_duplicates-remocao-de-duplicatas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. drop_duplicates — Remoção de duplicatas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-drop_critical_nulls-remocao-de-nulos-em-colunas-chave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. drop_critical_nulls — Remoção de nulos em colunas-chave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-fill_optional_nulls-preenchimento-de-nulos-opcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. fill_optional_nulls — Preenchimento de nulos opcionais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-cast_types-garantia-de-tipos-corretos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. cast_types — Garantia de tipos corretos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadados-silver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadados Silver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-de-data-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log de Data Quality
       
     </span>
   </a>
@@ -785,10 +975,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modelo-de-dados" class="md-nav__link">
+  <a href="#resultado" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modelo de dados
+        Resultado
       
     </span>
   </a>
@@ -816,19 +1006,346 @@
 
 
 <h1 id="camada-silver">Camada Silver</h1>
-<p>Documentação da camada Silver da pipeline.</p>
+<p>Documentação da camada silver da pipeline.</p>
 <h2 id="objetivo">Objetivo</h2>
-<p>A camada Silver contém dados limpos, padronizados e deduplicados, prontos para modelagem analítica.</p>
-<h2 id="transformacoes">Transformações</h2>
-<p>Descreva as regras de limpeza, padronização e enriquecimento aplicadas na transição Bronze → Silver.</p>
-<h2 id="estrutura-no-minio">Estrutura no MinIO</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>silver/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  └── &lt;dominio&gt;/
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>      └── &lt;tabela&gt;/
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>          └── particoes por data
+<p>A camada Silver é responsável por aplicar regras de <strong>Data Quality</strong> nas tabelas da camada Bronze, garantindo consistência, padronização de tipos e integridade dos dados antes de chegarem à camada analítica.</p>
+<p>Nesta etapa nenhuma lógica de negócio ou agregação é aplicada — o foco é exclusivamente na qualidade e confiabilidade dos dados.</p>
+<hr />
+<h2 id="formato-e-tabelas-presentes">Formato e Tabelas Presentes</h2>
+<ul>
+<li><strong>Formato de entrada:</strong> Delta Lake (bucket <code>bronze</code>)</li>
+<li><strong>Formato de saída:</strong> Delta Lake (bucket <code>silver</code>)</li>
+<li><strong>Total de tabelas processadas:</strong> 12</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Origem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>olist_customers_dataset</code></td>
+<td>Kaggle / Olist</td>
+</tr>
+<tr>
+<td><code>olist_geolocation_dataset</code></td>
+<td>Kaggle / Olist</td>
+</tr>
+<tr>
+<td><code>olist_order_items_dataset</code></td>
+<td>Kaggle / Olist</td>
+</tr>
+<tr>
+<td><code>olist_order_payments_dataset</code></td>
+<td>Kaggle / Olist</td>
+</tr>
+<tr>
+<td><code>olist_order_reviews_dataset</code></td>
+<td>Kaggle / Olist</td>
+</tr>
+<tr>
+<td><code>olist_orders_dataset</code></td>
+<td>Kaggle / Olist</td>
+</tr>
+<tr>
+<td><code>olist_products_dataset</code></td>
+<td>Kaggle / Olist</td>
+</tr>
+<tr>
+<td><code>olist_sellers_dataset</code></td>
+<td>Kaggle / Olist</td>
+</tr>
+<tr>
+<td><code>product_category_name_translation</code></td>
+<td>Kaggle / Olist</td>
+</tr>
+<tr>
+<td><code>agents</code></td>
+<td>Supabase</td>
+</tr>
+<tr>
+<td><code>support_tickets</code></td>
+<td>Supabase</td>
+</tr>
+<tr>
+<td><code>support_ticket_messages</code></td>
+<td>Supabase</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="regras-de-data-quality">Regras de Data Quality</h2>
+<h3 id="1-snake_case-padronizacao-de-nomes-de-colunas">1. <code>snake_case</code> — Padronização de nomes de colunas</h3>
+<p>Renomeia todas as colunas para snake_case, garantindo consistência de nomenclatura entre tabelas.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">_to_snake_case</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([A-Z]+)([A-Z][a-z])&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\1_\2&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([a-z0-9])([A-Z])&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\1_\2&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[\s\-]+&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">apply_snake_case</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">renamed</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="n">new_name</span> <span class="o">=</span> <span class="n">_to_snake_case</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">if</span> <span class="n">new_name</span> <span class="o">!=</span> <span class="n">col</span><span class="p">:</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumnRenamed</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>            <span class="n">renamed</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">renamed</span>
 </code></pre></div>
-<h2 id="modelo-de-dados">Modelo de dados</h2>
-<p>Descreva o schema e as relações entre as entidades nesta camada.</p>
+<hr />
+<h3 id="2-drop_duplicates-remocao-de-duplicatas">2. <code>drop_duplicates</code> — Remoção de duplicatas</h3>
+<p>Remove linhas completamente duplicadas em cada tabela.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">apply_dedup</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">before</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropDuplicates</span><span class="p">()</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">before</span> <span class="o">-</span> <span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h3 id="3-drop_critical_nulls-remocao-de-nulos-em-colunas-chave">3. <code>drop_critical_nulls</code> — Remoção de nulos em colunas-chave</h3>
+<p>Remove linhas com valor nulo em colunas obrigatórias, definidas individualmente por tabela. Apenas colunas presentes no DataFrame são verificadas.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">apply_critical_null_drop</span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">critical_cols</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">cols_present</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">critical_cols</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">cols_present</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="mi">0</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">before</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">cols_present</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">before</span> <span class="o">-</span> <span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</code></pre></div>
+<p>Exemplos de colunas críticas por tabela:</p>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Colunas críticas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>olist_orders_dataset</code></td>
+<td><code>order_id</code>, <code>customer_id</code>, <code>order_status</code>, <code>order_purchase_timestamp</code></td>
+</tr>
+<tr>
+<td><code>olist_order_items_dataset</code></td>
+<td><code>order_id</code>, <code>product_id</code>, <code>seller_id</code></td>
+</tr>
+<tr>
+<td><code>support_tickets</code></td>
+<td><code>ticket_id</code>, <code>order_id</code>, <code>customer_id</code>, <code>agent_id</code>, <code>status</code>, <code>opened_at</code></td>
+</tr>
+<tr>
+<td><code>support_ticket_messages</code></td>
+<td><code>message_id</code>, <code>ticket_id</code>, <code>sender</code>, <code>body</code></td>
+</tr>
+<tr>
+<td><code>agents</code></td>
+<td><code>agent_id</code>, <code>alias</code>, <code>team</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="4-fill_optional_nulls-preenchimento-de-nulos-opcionais">4. <code>fill_optional_nulls</code> — Preenchimento de nulos opcionais</h3>
+<p>Preenche nulos em colunas opcionais com valores-padrão de negócio definidos por tabela.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">apply_optional_fill</span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">fill_map</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">valid_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">fill_map</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid_map</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="mi">0</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">valid_map</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_map</span><span class="p">)</span>
+</code></pre></div>
+<p>Valores-padrão utilizados no projeto:</p>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Coluna</th>
+<th>Valor padrão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>olist_order_payments_dataset</code></td>
+<td><code>payment_installments</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>olist_order_payments_dataset</code></td>
+<td><code>payment_value</code></td>
+<td><code>0.0</code></td>
+</tr>
+<tr>
+<td><code>olist_order_reviews_dataset</code></td>
+<td><code>review_comment_title</code></td>
+<td><code>""</code></td>
+</tr>
+<tr>
+<td><code>olist_order_reviews_dataset</code></td>
+<td><code>review_comment_message</code></td>
+<td><code>""</code></td>
+</tr>
+<tr>
+<td><code>olist_products_dataset</code></td>
+<td><code>product_category_name</code></td>
+<td><code>"unknown"</code></td>
+</tr>
+<tr>
+<td><code>support_tickets</code></td>
+<td><code>channel</code></td>
+<td><code>"unknown"</code></td>
+</tr>
+<tr>
+<td><code>support_tickets</code></td>
+<td><code>priority</code></td>
+<td><code>"normal"</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="5-cast_types-garantia-de-tipos-corretos">5. <code>cast_types</code> — Garantia de tipos corretos</h3>
+<p>Aplica casts explícitos de tipo por coluna, garantindo que timestamps, doubles, integers e booleans sejam armazenados com o tipo correto no Silver.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">apply_type_casts</span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">cast_map</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">DataType</span><span class="p">]</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">cast_count</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="k">for</span> <span class="n">col_name</span><span class="p">,</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="n">cast_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="k">if</span> <span class="n">col_name</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="n">col_name</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">col_name</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="n">cast_count</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">cast_count</span>
+</code></pre></div>
+<p>Exemplos de casts aplicados:</p>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Coluna</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>olist_orders_dataset</code></td>
+<td><code>order_purchase_timestamp</code></td>
+<td><code>TimestampType</code></td>
+</tr>
+<tr>
+<td><code>olist_order_items_dataset</code></td>
+<td><code>price</code>, <code>freight_value</code></td>
+<td><code>DoubleType</code></td>
+</tr>
+<tr>
+<td><code>olist_order_payments_dataset</code></td>
+<td><code>payment_value</code></td>
+<td><code>DoubleType</code></td>
+</tr>
+<tr>
+<td><code>olist_geolocation_dataset</code></td>
+<td><code>geolocation_lat</code>, <code>geolocation_lng</code></td>
+<td><code>DoubleType</code></td>
+</tr>
+<tr>
+<td><code>support_tickets</code></td>
+<td><code>opened_at</code>, <code>closed_at</code></td>
+<td><code>TimestampType</code></td>
+</tr>
+<tr>
+<td><code>support_tickets</code></td>
+<td><code>requires_seller_action</code></td>
+<td><code>BooleanType</code></td>
+</tr>
+<tr>
+<td><code>support_ticket_messages</code></td>
+<td><code>sent_at</code></td>
+<td><code>TimestampType</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="metadados-silver">Metadados Silver</h2>
+<p>Após as regras de DQ, dois campos de rastreabilidade são adicionados a todas as tabelas:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">df</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;_silver_timestamp&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">current_timestamp</span><span class="p">())</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;_silver_source&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bronze_bucket</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_silver_timestamp</code></td>
+<td>timestamp</td>
+<td>Data e hora do processamento Silver</td>
+</tr>
+<tr>
+<td><code>_silver_source</code></td>
+<td>string</td>
+<td>Caminho da tabela Bronze de origem</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="log-de-data-quality">Log de Data Quality</h2>
+<p>Ao final do processamento, o job gera um log estruturado em JSON com as métricas de DQ de cada tabela, persistido em <code>/tmp/dq_log_bronze_to_silver_&lt;timestamp&gt;.json</code> para auditoria.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">[</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">&quot;table&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;olist_orders_dataset&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">&quot;rows_bronze&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99441</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nt">&quot;rows_silver&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99433</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nt">&quot;dropped_duplicates&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="nt">&quot;dropped_critical_nulls&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nt">&quot;optional_cols_filled&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nt">&quot;cols_cast&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="nt">&quot;cols_renamed_to_snake_case&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="nt">&quot;nulls_remaining_by_col&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="nt">&quot;table&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;support_tickets&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">    </span><span class="nt">&quot;rows_bronze&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">    </span><span class="nt">&quot;rows_silver&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span><span class="nt">&quot;dropped_duplicates&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">    </span><span class="nt">&quot;dropped_critical_nulls&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">    </span><span class="nt">&quot;optional_cols_filled&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">    </span><span class="nt">&quot;cols_cast&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">    </span><span class="nt">&quot;cols_renamed_to_snake_case&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">    </span><span class="nt">&quot;nulls_remaining_by_col&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="p">]</span>
+</code></pre></div>
+<hr />
+<h2 id="estrutura-no-minio">Estrutura no MinIO</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>silver/
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── olist_customers_dataset/
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>│   ├── _delta_log/
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│   └── part-*.parquet
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>├── olist_geolocation_dataset/
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>├── olist_order_items_dataset/
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>├── olist_order_payments_dataset/
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>├── olist_order_reviews_dataset/
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>├── olist_orders_dataset/
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>├── olist_products_dataset/
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>├── olist_sellers_dataset/
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>├── product_category_name_translation/
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>├── agents/
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>├── support_tickets/
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>└── support_ticket_messages/
+</code></pre></div>
+<hr />
+<h2 id="resultado">Resultado</h2>
+<p>Ao final da execução, as 12 tabelas ficam disponíveis no bucket <code>silver</code> em formato Delta Lake, com dados limpos, tipados corretamente e rastreados por metadados de pipeline. O log de DQ gerado documenta cada transformação aplicada, permitindo auditoria completa do processamento. Os dados ficam prontos para a modelagem dimensional da camada Gold.</p>
 
 
 
@@ -902,7 +1419,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.expand", "navigation.instant", "navigation.tracking", "search.highlight", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.expand", "navigation.instant", "navigation.tracking", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>

@@ -90,7 +90,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
     <a href=".." title="Projeto Final - Engenharia de Dados SATC" class="md-header__button md-logo" aria-label="Projeto Final - Engenharia de Dados SATC" data-md-component="logo">
       
@@ -207,14 +209,8 @@
     
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -376,7 +372,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -631,10 +633,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#transformacoes" class="md-nav__link">
+  <a href="#formato-e-tabelas-presentes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Transformações
+        Formato e Tabelas Presentes
       
     </span>
   </a>
@@ -642,10 +644,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#estrutura-no-minio" class="md-nav__link">
+  <a href="#star-schema-vs-obt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estrutura no MinIO
+        Star Schema vs OBT
       
     </span>
   </a>
@@ -653,10 +655,204 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metricas-de-negocio" class="md-nav__link">
+  <a href="#diagrama-er" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Métricas de negócio
+        Diagrama ER
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dimensoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dimensões
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dimensões">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dim_date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dim_date
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dim_customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dim_customer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dim_seller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dim_seller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dim_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dim_product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dim_agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dim_agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabelas-fato" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabelas Fato
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabelas Fato">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fact_orders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fact_orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fact_reviews" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fact_reviews
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fact_support_tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fact_support_tickets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplos-de-queries-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplos de Queries SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exemplos de Queries SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kpi-1-receita-total-e-tempo-medio-de-entrega-por-mes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KPI 1 — Receita total e tempo médio de entrega por mês
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kpi-2-taxa-de-resolucao-de-tickets-dentro-do-sla-por-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KPI 2 — Taxa de resolução de tickets dentro do SLA por equipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadados-gold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadados Gold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consumo-via-trino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumo via Trino
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultado
       
     </span>
   </a>
@@ -763,10 +959,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#transformacoes" class="md-nav__link">
+  <a href="#formato-e-tabelas-presentes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Transformações
+        Formato e Tabelas Presentes
       
     </span>
   </a>
@@ -774,10 +970,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#estrutura-no-minio" class="md-nav__link">
+  <a href="#star-schema-vs-obt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estrutura no MinIO
+        Star Schema vs OBT
       
     </span>
   </a>
@@ -785,10 +981,204 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metricas-de-negocio" class="md-nav__link">
+  <a href="#diagrama-er" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Métricas de negócio
+        Diagrama ER
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dimensoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dimensões
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dimensões">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dim_date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dim_date
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dim_customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dim_customer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dim_seller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dim_seller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dim_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dim_product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dim_agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dim_agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabelas-fato" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabelas Fato
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabelas Fato">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fact_orders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fact_orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fact_reviews" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fact_reviews
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fact_support_tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fact_support_tickets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplos-de-queries-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplos de Queries SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exemplos de Queries SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kpi-1-receita-total-e-tempo-medio-de-entrega-por-mes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KPI 1 — Receita total e tempo médio de entrega por mês
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kpi-2-taxa-de-resolucao-de-tickets-dentro-do-sla-por-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KPI 2 — Taxa de resolução de tickets dentro do SLA por equipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadados-gold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadados Gold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consumo-via-trino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumo via Trino
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultado
       
     </span>
   </a>
@@ -816,19 +1206,823 @@
 
 
 <h1 id="camada-gold">Camada Gold</h1>
-<p>Documentação da camada Gold da pipeline.</p>
+<p>Documentação da camada gold da pipeline.</p>
 <h2 id="objetivo">Objetivo</h2>
-<p>A camada Gold contém dados agregados e modelados para consumo analítico e dashboards.</p>
-<h2 id="transformacoes">Transformações</h2>
-<p>Descreva as agregações, métricas e dimensões criadas na transição Silver → Gold.</p>
-<h2 id="estrutura-no-minio">Estrutura no MinIO</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>gold/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  └── &lt;dominio&gt;/
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>      └── &lt;tabela_ou_view&gt;/
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>          └── dados prontos para consumo
+<p>A camada Gold é responsável por construir o <strong>modelo dimensional estrela</strong> a partir dos dados limpos da camada Silver, disponibilizando tabelas analíticas otimizadas para consumo pelo Metabase e outras ferramentas de BI.</p>
+<p>Nesta etapa são realizadas as transformações de negócio: joins entre tabelas, criação de surrogate keys, cálculo de flags e métricas operacionais.</p>
+<hr />
+<h2 id="formato-e-tabelas-presentes">Formato e Tabelas Presentes</h2>
+<ul>
+<li><strong>Formato de entrada:</strong> Delta Lake (bucket <code>silver</code>)</li>
+<li><strong>Formato de saída:</strong> Delta Lake (bucket <code>gold</code>)</li>
+<li><strong>Total de tabelas:</strong> 8 (5 dimensões + 3 fatos)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Tipo</th>
+<th>Grain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dim_date</code></td>
+<td>Dimensão</td>
+<td>Um registro por dia do calendário</td>
+</tr>
+<tr>
+<td><code>dim_customer</code></td>
+<td>Dimensão</td>
+<td>Um registro por <code>customer_id</code></td>
+</tr>
+<tr>
+<td><code>dim_seller</code></td>
+<td>Dimensão</td>
+<td>Um registro por <code>seller_id</code></td>
+</tr>
+<tr>
+<td><code>dim_product</code></td>
+<td>Dimensão</td>
+<td>Um registro por <code>product_id</code></td>
+</tr>
+<tr>
+<td><code>dim_agent</code></td>
+<td>Dimensão</td>
+<td>Um registro por <code>agent_id</code></td>
+</tr>
+<tr>
+<td><code>fact_orders</code></td>
+<td>Fato</td>
+<td>Um registro por item de pedido (<code>order_id</code> + <code>order_item_id</code>)</td>
+</tr>
+<tr>
+<td><code>fact_reviews</code></td>
+<td>Fato</td>
+<td>Um registro por avaliação (<code>review_id</code>)</td>
+</tr>
+<tr>
+<td><code>fact_support_tickets</code></td>
+<td>Fato</td>
+<td>Um registro por ticket de suporte (<code>ticket_id</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="star-schema-vs-obt">Star Schema vs OBT</h2>
+<p>O projeto adota <strong>Star Schema</strong> em vez de One Big Table (OBT) pelos seguintes motivos:</p>
+<p><strong>Star Schema foi escolhido porque:</strong></p>
+<ul>
+<li>As dimensões (<code>dim_customer</code>, <code>dim_seller</code>, <code>dim_product</code>) são reutilizadas por múltiplas tabelas fato, evitando redundância de dados.</li>
+<li>O Metabase se integra naturalmente com modelos dimensionais, permitindo joins visuais entre fatos e dimensões sem SQL manual.</li>
+<li>O modelo estrela facilita a adição de novas tabelas fato no futuro (ex: <code>fact_payments</code>) sem necessidade de reescrever toda a estrutura.</li>
+<li>Dimensões como <code>dim_date</code> e <code>dim_customer</code> enriquecem os dados com atributos calculados (coordenadas geográficas, flags de fim de semana) que seriam repetidos desnecessariamente em uma OBT.</li>
+</ul>
+<p><strong>OBT seria adequado se:</strong>
+- Houvesse apenas uma tabela fato e o modelo não fosse expandido.
+- A ferramenta de BI não suportasse joins, exigindo uma única tabela plana.</p>
+<hr />
+<h2 id="diagrama-er">Diagrama ER</h2>
+<pre class="mermaid"><code>erDiagram
+    dim_date {
+        int date_sk PK
+        int date_id
+        date full_date
+        int year
+        int quarter
+        int month
+        string month_name
+        int day
+        boolean is_weekend
+    }
+
+    dim_customer {
+        int customer_sk PK
+        string customer_id
+        string customer_unique_id
+        string customer_city
+        string customer_state
+        double avg_lat
+        double avg_lng
+    }
+
+    dim_seller {
+        int seller_sk PK
+        string seller_id
+        string seller_city
+        string seller_state
+        double avg_lat
+        double avg_lng
+    }
+
+    dim_product {
+        int product_sk PK
+        string product_id
+        string product_category_name
+        string product_category_name_english
+        double product_weight_g
+    }
+
+    dim_agent {
+        int agent_sk PK
+        string agent_id
+        string alias
+        string team
+    }
+
+    fact_orders {
+        string order_id
+        int order_item_id
+        string customer_id FK
+        string product_id FK
+        string seller_id FK
+        int date_id FK
+        boolean is_delivered
+        boolean is_pending
+        double total_value
+        int delivery_days
+    }
+
+    fact_reviews {
+        string review_id
+        string order_id
+        string customer_id FK
+        int date_id FK
+        int review_score
+        boolean has_comment
+    }
+
+    fact_support_tickets {
+        string ticket_id
+        string order_id
+        string customer_id FK
+        string agent_id FK
+        int date_id FK
+        boolean is_solved
+        boolean sla_met
+        int message_count
+    }
+
+    dim_date ||--o{ fact_orders : "date_id"
+    dim_date ||--o{ fact_reviews : "date_id"
+    dim_date ||--o{ fact_support_tickets : "date_id"
+    dim_customer ||--o{ fact_orders : "customer_id"
+    dim_customer ||--o{ fact_reviews : "customer_id"
+    dim_customer ||--o{ fact_support_tickets : "customer_id"
+    dim_seller ||--o{ fact_orders : "seller_id"
+    dim_product ||--o{ fact_orders : "product_id"
+    dim_agent ||--o{ fact_support_tickets : "agent_id"</code></pre>
+<hr />
+<h2 id="dimensoes">Dimensões</h2>
+<h3 id="dim_date"><code>dim_date</code></h3>
+<p>Calendário gerado automaticamente a partir do intervalo de <code>order_purchase_timestamp</code> da camada Silver.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">dim_date</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">spark</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="n">n_days</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">expr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;date_add(to_date(&#39;</span><span class="si">{</span><span class="n">start_str</span><span class="si">}</span><span class="s2">&#39;), CAST(id AS INT))&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">))</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="o">.</span><span class="n">select</span><span class="p">(</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">year</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10000</span> <span class="o">+</span> <span class="n">F</span><span class="o">.</span><span class="n">month</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">F</span><span class="o">.</span><span class="n">dayofmonth</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">))</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>            <span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">IntegerType</span><span class="p">())</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;date_id&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="n">F</span><span class="o">.</span><span class="n">year</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="n">F</span><span class="o">.</span><span class="n">quarter</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;quarter&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="n">F</span><span class="o">.</span><span class="n">month</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="n">F</span><span class="o">.</span><span class="n">date_format</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">,</span> <span class="s2">&quot;MMMM&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;month_name&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="n">F</span><span class="o">.</span><span class="n">dayofmonth</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;day&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="n">F</span><span class="o">.</span><span class="n">weekofyear</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;week_of_year&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">dayofweek</span><span class="p">(</span><span class="s2">&quot;full_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">]))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;is_weekend&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="p">)</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;date_sk&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">row_number</span><span class="p">()</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">Window</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;date_id&quot;</span><span class="p">)))</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">)</span>
 </code></pre></div>
-<h2 id="metricas-de-negocio">Métricas de negócio</h2>
-<p>Descreva as KPIs e indicadores disponíveis nesta camada.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>date_sk</code></td>
+<td>int</td>
+<td>Surrogate key</td>
+</tr>
+<tr>
+<td><code>date_id</code></td>
+<td>int</td>
+<td>Chave natural (YYYYMMDD)</td>
+</tr>
+<tr>
+<td><code>full_date</code></td>
+<td>date</td>
+<td>Data completa</td>
+</tr>
+<tr>
+<td><code>year</code></td>
+<td>int</td>
+<td>Ano</td>
+</tr>
+<tr>
+<td><code>quarter</code></td>
+<td>int</td>
+<td>Trimestre</td>
+</tr>
+<tr>
+<td><code>month</code></td>
+<td>int</td>
+<td>Mês</td>
+</tr>
+<tr>
+<td><code>month_name</code></td>
+<td>string</td>
+<td>Nome do mês</td>
+</tr>
+<tr>
+<td><code>day</code></td>
+<td>int</td>
+<td>Dia do mês</td>
+</tr>
+<tr>
+<td><code>week_of_year</code></td>
+<td>int</td>
+<td>Semana do ano</td>
+</tr>
+<tr>
+<td><code>day_of_week</code></td>
+<td>int</td>
+<td>Dia da semana (1=Dom, 7=Sáb)</td>
+</tr>
+<tr>
+<td><code>day_name</code></td>
+<td>string</td>
+<td>Nome do dia</td>
+</tr>
+<tr>
+<td><code>is_weekend</code></td>
+<td>boolean</td>
+<td>True se sábado ou domingo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dim_customer"><code>dim_customer</code></h3>
+<p>Clientes enriquecidos com coordenadas geográficas médias por CEP.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">geo_agg</span> <span class="o">=</span> <span class="n">geolocation</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;geolocation_zip_code_prefix&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">F</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="s2">&quot;geolocation_lat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;avg_lat&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">F</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="s2">&quot;geolocation_lng&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;avg_lng&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">dim_customer</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">customers</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="o">.</span><span class="n">join</span><span class="p">(</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="n">geo_agg</span><span class="p">,</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="n">customers</span><span class="p">[</span><span class="s2">&quot;customer_zip_code_prefix&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">IntegerType</span><span class="p">())</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="o">==</span> <span class="n">geo_agg</span><span class="p">[</span><span class="s2">&quot;geolocation_zip_code_prefix&quot;</span><span class="p">],</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="o">.</span><span class="n">select</span><span class="p">(</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="s2">&quot;customer_id&quot;</span><span class="p">,</span> <span class="s2">&quot;customer_unique_id&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="s2">&quot;customer_zip_code_prefix&quot;</span><span class="p">,</span> <span class="s2">&quot;customer_city&quot;</span><span class="p">,</span> <span class="s2">&quot;customer_state&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="n">F</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="s2">&quot;avg_lat&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;avg_lat&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="n">F</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="s2">&quot;avg_lng&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;avg_lng&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;customer_sk&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">row_number</span><span class="p">()</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">Window</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;customer_id&quot;</span><span class="p">)))</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>customer_sk</code></td>
+<td>int</td>
+<td>Surrogate key</td>
+</tr>
+<tr>
+<td><code>customer_id</code></td>
+<td>string</td>
+<td>Chave natural</td>
+</tr>
+<tr>
+<td><code>customer_unique_id</code></td>
+<td>string</td>
+<td>Identificador único do cliente</td>
+</tr>
+<tr>
+<td><code>customer_zip_code_prefix</code></td>
+<td>string</td>
+<td>CEP (5 dígitos)</td>
+</tr>
+<tr>
+<td><code>customer_city</code></td>
+<td>string</td>
+<td>Cidade</td>
+</tr>
+<tr>
+<td><code>customer_state</code></td>
+<td>string</td>
+<td>UF</td>
+</tr>
+<tr>
+<td><code>avg_lat</code></td>
+<td>double</td>
+<td>Latitude média do CEP</td>
+</tr>
+<tr>
+<td><code>avg_lng</code></td>
+<td>double</td>
+<td>Longitude média do CEP</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dim_seller"><code>dim_seller</code></h3>
+<p>Vendedores enriquecidos com coordenadas geográficas médias por CEP, usando o mesmo <code>geo_agg</code> de <code>dim_customer</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>seller_sk</code></td>
+<td>int</td>
+<td>Surrogate key</td>
+</tr>
+<tr>
+<td><code>seller_id</code></td>
+<td>string</td>
+<td>Chave natural</td>
+</tr>
+<tr>
+<td><code>seller_zip_code_prefix</code></td>
+<td>string</td>
+<td>CEP (5 dígitos)</td>
+</tr>
+<tr>
+<td><code>seller_city</code></td>
+<td>string</td>
+<td>Cidade</td>
+</tr>
+<tr>
+<td><code>seller_state</code></td>
+<td>string</td>
+<td>UF</td>
+</tr>
+<tr>
+<td><code>avg_lat</code></td>
+<td>double</td>
+<td>Latitude média do CEP</td>
+</tr>
+<tr>
+<td><code>avg_lng</code></td>
+<td>double</td>
+<td>Longitude média do CEP</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dim_product"><code>dim_product</code></h3>
+<p>Produtos com categoria denormalizada — a tradução PT→EN é unida diretamente, sem tabela de categoria separada (decisão de star schema).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">dim_product</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">products</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_tr</span><span class="p">,</span> <span class="s2">&quot;product_category_name&quot;</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="o">.</span><span class="n">select</span><span class="p">(</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="s2">&quot;product_id&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="s2">&quot;product_category_name&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="n">F</span><span class="o">.</span><span class="n">coalesce</span><span class="p">(</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;product_category_name_english&quot;</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot;unknown&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;product_category_name_english&quot;</span><span class="p">),</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="s2">&quot;product_weight_g&quot;</span><span class="p">,</span> <span class="s2">&quot;product_length_cm&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="s2">&quot;product_height_cm&quot;</span><span class="p">,</span> <span class="s2">&quot;product_width_cm&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;product_sk&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">row_number</span><span class="p">()</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">Window</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;product_id&quot;</span><span class="p">)))</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>product_sk</code></td>
+<td>int</td>
+<td>Surrogate key</td>
+</tr>
+<tr>
+<td><code>product_id</code></td>
+<td>string</td>
+<td>Chave natural</td>
+</tr>
+<tr>
+<td><code>product_category_name</code></td>
+<td>string</td>
+<td>Categoria em português</td>
+</tr>
+<tr>
+<td><code>product_category_name_english</code></td>
+<td>string</td>
+<td>Categoria em inglês (<code>unknown</code> se não traduzida)</td>
+</tr>
+<tr>
+<td><code>product_weight_g</code></td>
+<td>double</td>
+<td>Peso em gramas</td>
+</tr>
+<tr>
+<td><code>product_length_cm</code></td>
+<td>double</td>
+<td>Comprimento em cm</td>
+</tr>
+<tr>
+<td><code>product_height_cm</code></td>
+<td>double</td>
+<td>Altura em cm</td>
+</tr>
+<tr>
+<td><code>product_width_cm</code></td>
+<td>double</td>
+<td>Largura em cm</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dim_agent"><code>dim_agent</code></h3>
+<p>Agentes de suporte com suas equipes de atuação.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agent_sk</code></td>
+<td>int</td>
+<td>Surrogate key</td>
+</tr>
+<tr>
+<td><code>agent_id</code></td>
+<td>string</td>
+<td>Chave natural</td>
+</tr>
+<tr>
+<td><code>alias</code></td>
+<td>string</td>
+<td>Nome do agente</td>
+</tr>
+<tr>
+<td><code>team</code></td>
+<td>string</td>
+<td>Equipe (logistics, post_sale, payments, orders, seller_ops)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="tabelas-fato">Tabelas Fato</h2>
+<h3 id="fact_orders"><code>fact_orders</code></h3>
+<p>Grain: <strong>order_item</strong> — uma linha por item de pedido.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">fact_orders</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">order_items</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_orders_slim</span><span class="p">,</span> <span class="s2">&quot;order_id&quot;</span><span class="p">,</span> <span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;total_value&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;freight_value&quot;</span><span class="p">))</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;is_delivered&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;order_status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;delivered&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="s2">&quot;is_pending&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="p">(</span><span class="o">~</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;order_status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="s2">&quot;canceled&quot;</span><span class="p">,</span> <span class="s2">&quot;unavailable&quot;</span><span class="p">))</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="o">&amp;</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;order_delivered_customer_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">(),</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="s2">&quot;delivery_days&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>            <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;order_delivered_customer_date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNotNull</span><span class="p">(),</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            <span class="n">F</span><span class="o">.</span><span class="n">datediff</span><span class="p">(</span><span class="s2">&quot;order_delivered_customer_date&quot;</span><span class="p">,</span> <span class="s2">&quot;order_purchase_timestamp&quot;</span><span class="p">),</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">IntegerType</span><span class="p">())),</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>order_id</code></td>
+<td>string</td>
+<td>ID do pedido</td>
+</tr>
+<tr>
+<td><code>order_item_id</code></td>
+<td>int</td>
+<td>Sequencial do item</td>
+</tr>
+<tr>
+<td><code>customer_id</code></td>
+<td>string</td>
+<td>FK → <code>dim_customer</code></td>
+</tr>
+<tr>
+<td><code>product_id</code></td>
+<td>string</td>
+<td>FK → <code>dim_product</code></td>
+</tr>
+<tr>
+<td><code>seller_id</code></td>
+<td>string</td>
+<td>FK → <code>dim_seller</code></td>
+</tr>
+<tr>
+<td><code>date_id</code></td>
+<td>int</td>
+<td>FK → <code>dim_date</code></td>
+</tr>
+<tr>
+<td><code>order_status</code></td>
+<td>string</td>
+<td>Status do pedido</td>
+</tr>
+<tr>
+<td><code>is_delivered</code></td>
+<td>boolean</td>
+<td>True se status = <code>delivered</code></td>
+</tr>
+<tr>
+<td><code>is_pending</code></td>
+<td>boolean</td>
+<td>True se não cancelado e sem data de entrega</td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td>double</td>
+<td>Preço do item</td>
+</tr>
+<tr>
+<td><code>freight_value</code></td>
+<td>double</td>
+<td>Frete</td>
+</tr>
+<tr>
+<td><code>total_value</code></td>
+<td>double</td>
+<td><code>price + freight_value</code></td>
+</tr>
+<tr>
+<td><code>delivery_days</code></td>
+<td>int</td>
+<td>Dias entre compra e entrega</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="fact_reviews"><code>fact_reviews</code></h3>
+<p>Grain: <strong>review</strong> — uma linha por avaliação de pedido.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>review_id</code></td>
+<td>string</td>
+<td>ID da avaliação</td>
+</tr>
+<tr>
+<td><code>order_id</code></td>
+<td>string</td>
+<td>ID do pedido</td>
+</tr>
+<tr>
+<td><code>customer_id</code></td>
+<td>string</td>
+<td>FK → <code>dim_customer</code></td>
+</tr>
+<tr>
+<td><code>date_id</code></td>
+<td>int</td>
+<td>FK → <code>dim_date</code></td>
+</tr>
+<tr>
+<td><code>review_score</code></td>
+<td>int</td>
+<td>Nota de 1 a 5</td>
+</tr>
+<tr>
+<td><code>has_comment</code></td>
+<td>boolean</td>
+<td>True se há comentário preenchido</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="fact_support_tickets"><code>fact_support_tickets</code></h3>
+<p>Grain: <strong>ticket</strong> — uma linha por ticket de suporte.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">fact_support_tickets</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">tickets</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_msg_count</span><span class="p">,</span> <span class="s2">&quot;ticket_id&quot;</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;is_solved&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="s2">&quot;closed&quot;</span><span class="p">,</span> <span class="s2">&quot;resolved&quot;</span><span class="p">))</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="s2">&quot;sla_met&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;resolution_hours&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNotNull</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;sla_target_hours&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNotNull</span><span class="p">(),</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>            <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;resolution_hours&quot;</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;sla_target_hours&quot;</span><span class="p">),</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        <span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">BooleanType</span><span class="p">())),</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;message_count&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">coalesce</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;message_count&quot;</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ticket_id</code></td>
+<td>string</td>
+<td>ID do ticket</td>
+</tr>
+<tr>
+<td><code>order_id</code></td>
+<td>string</td>
+<td>ID do pedido relacionado</td>
+</tr>
+<tr>
+<td><code>customer_id</code></td>
+<td>string</td>
+<td>FK → <code>dim_customer</code></td>
+</tr>
+<tr>
+<td><code>agent_id</code></td>
+<td>string</td>
+<td>FK → <code>dim_agent</code></td>
+</tr>
+<tr>
+<td><code>date_id</code></td>
+<td>int</td>
+<td>FK → <code>dim_date</code></td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>string</td>
+<td>Canal de atendimento</td>
+</tr>
+<tr>
+<td><code>issue_type</code></td>
+<td>string</td>
+<td>Tipo de problema</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>string</td>
+<td>Prioridade (high, medium, low)</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>Status atual</td>
+</tr>
+<tr>
+<td><code>is_solved</code></td>
+<td>boolean</td>
+<td>True se <code>closed</code> ou <code>resolved</code></td>
+</tr>
+<tr>
+<td><code>first_response_minutes</code></td>
+<td>int</td>
+<td>Tempo até a primeira resposta</td>
+</tr>
+<tr>
+<td><code>sla_target_hours</code></td>
+<td>int</td>
+<td>Meta de SLA por prioridade</td>
+</tr>
+<tr>
+<td><code>resolution_hours</code></td>
+<td>int</td>
+<td>Horas até a resolução</td>
+</tr>
+<tr>
+<td><code>sla_met</code></td>
+<td>boolean</td>
+<td>True se <code>resolution_hours &lt;= sla_target_hours</code></td>
+</tr>
+<tr>
+<td><code>requires_seller_action</code></td>
+<td>boolean</td>
+<td>True se envolve ação do vendedor</td>
+</tr>
+<tr>
+<td><code>message_count</code></td>
+<td>int</td>
+<td>Total de mensagens do ticket</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="exemplos-de-queries-sql">Exemplos de Queries SQL</h2>
+<h3 id="kpi-1-receita-total-e-tempo-medio-de-entrega-por-mes">KPI 1 — Receita total e tempo médio de entrega por mês</h3>
+<p>Responde: <em>Quanto faturamos por mês e qual foi o tempo médio de entrega dos pedidos entregues?</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="k">year</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="k">month</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">month_name</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">total_value</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w">      </span><span class="k">AS</span><span class="w"> </span><span class="n">receita_total</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">delivery_days</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">    </span><span class="k">AS</span><span class="w"> </span><span class="n">tempo_medio_entrega_dias</span><span class="p">,</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">)</span><span class="w">        </span><span class="k">AS</span><span class="w"> </span><span class="n">total_pedidos_entregues</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">FROM</span><span class="w"> </span><span class="n">fact_orders</span><span class="w"> </span><span class="n">o</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_date</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">date_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">date_id</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">is_delivered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">month_name</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="k">month</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h3 id="kpi-2-taxa-de-resolucao-de-tickets-dentro-do-sla-por-equipe">KPI 2 — Taxa de resolução de tickets dentro do SLA por equipe</h3>
+<p>Responde: <em>Qual equipe de suporte cumpre melhor o SLA e qual o volume de tickets resolvidos?</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SELECT</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">team</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">ticket_id</span><span class="p">)</span><span class="w">                                </span><span class="k">AS</span><span class="w"> </span><span class="n">total_tickets</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">is_solved</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w">     </span><span class="k">AS</span><span class="w"> </span><span class="n">tickets_resolvidos</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">sla_met</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w">       </span><span class="k">AS</span><span class="w"> </span><span class="n">tickets_no_sla</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">sla_met</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="o">/</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">is_solved</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="mi">1</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="p">)</span><span class="w">                                                  </span><span class="k">AS</span><span class="w"> </span><span class="n">pct_sla_cumprido</span><span class="p">,</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">first_response_minutes</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">           </span><span class="k">AS</span><span class="w"> </span><span class="n">tempo_medio_resposta_min</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="k">FROM</span><span class="w"> </span><span class="n">fact_support_tickets</span><span class="w"> </span><span class="n">t</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_agent</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">agent_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">agent_id</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">team</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pct_sla_cumprido</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h2 id="metadados-gold">Metadados Gold</h2>
+<p>Todos as tabelas Gold recebem campos de rastreabilidade adicionados na escrita:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;_gold_timestamp&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">current_timestamp</span><span class="p">())</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;_gold_source&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="n">silver_bucket</span><span class="p">))</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_gold_timestamp</code></td>
+<td>timestamp</td>
+<td>Data e hora da escrita Gold</td>
+</tr>
+<tr>
+<td><code>_gold_source</code></td>
+<td>string</td>
+<td>Bucket Silver de origem</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="consumo-via-trino">Consumo via Trino</h2>
+<p>As tabelas Gold não são consumidas diretamente pelo Metabase — o <strong>Trino</strong> atua como query engine entre o MinIO e o Metabase, virtualizando as tabelas Delta Lake via SQL padrão.</p>
+<pre class="mermaid"><code>flowchart LR
+    A[Gold - Delta Lake\nMinIO] --&gt; B[Trino\nDocker Compose]
+    B --&gt; C[Metabase\nDashboards]</code></pre>
+<p>O Trino é configurado via Docker Compose com um conector Delta Lake apontando para o bucket <code>gold</code> do MinIO. Com isso, o Metabase enxerga as tabelas <code>dim_date</code>, <code>dim_customer</code>, <code>fact_orders</code> e demais como se fossem tabelas SQL convencionais.</p>
+<p><strong>Vantagens dessa abordagem:</strong></p>
+<ul>
+<li>O Metabase não precisa conhecer o formato Delta nem se conectar diretamente ao MinIO.</li>
+<li>Qualquer ferramenta que suporte JDBC/SQL pode ser conectada ao Trino no lugar do Metabase.</li>
+<li>A camada de armazenamento (MinIO + Delta) fica completamente separada da camada de consumo.</li>
+</ul>
+<hr />
+<h2 id="resultado">Resultado</h2>
+<p>Ao final da execução, as 8 tabelas do modelo estrela ficam disponíveis no bucket <code>gold</code> em formato Delta Lake, prontas para consumo pelo Metabase e geração dos dashboards analíticos.</p>
 
 
 
@@ -902,7 +2096,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.expand", "navigation.instant", "navigation.tracking", "search.highlight", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.expand", "navigation.instant", "navigation.tracking", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
