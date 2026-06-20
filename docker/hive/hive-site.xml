@@ -1,14 +1,11 @@
 <?xml version="1.0"?>
 <configuration>
-<property>
-    <name>hive.execution.engine</name>
-    <value>mr</value>
-  </property>
-  <!-- Diretório do warehouse — Trino gerencia as localizações via DDL,
-       mas o HMS precisa de um valor configurado. -->
+
+  <!-- HMS armazena apenas metadados — o Trino lê os dados do MinIO diretamente.
+       Warehouse dir local evita dependência do S3A no startup do HMS. -->
   <property>
     <name>hive.metastore.warehouse.dir</name>
-    <value>s3a://gold/</value>
+    <value>/tmp/hive-warehouse</value>
   </property>
 
   <!-- Thrift URI do próprio metastore -->
@@ -21,32 +18,6 @@
   <property>
     <name>hive.metastore.schema.verification</name>
     <value>false</value>
-  </property>
-
-  <!-- Acesso ao MinIO via S3A -->
-  <property>
-    <name>fs.s3a.endpoint</name>
-    <value>http://minio:9000</value>
-  </property>
-  <property>
-    <name>fs.s3a.access.key</name>
-    <value>minioadmin</value>
-  </property>
-  <property>
-    <name>fs.s3a.secret.key</name>
-    <value>minioadmin</value>
-  </property>
-  <property>
-    <name>fs.s3a.path.style.access</name>
-    <value>true</value>
-  </property>
-  <property>
-    <name>fs.s3a.connection.ssl.enabled</name>
-    <value>false</value>
-  </property>
-  <property>
-    <name>fs.s3a.impl</name>
-    <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
   </property>
 
 </configuration>
