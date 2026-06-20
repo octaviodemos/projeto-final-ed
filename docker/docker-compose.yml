@@ -7,6 +7,7 @@ services:
       POSTGRES_DB: metastore
       POSTGRES_USER: hive
       POSTGRES_PASSWORD: hive
+      POSTGRES_INITDB_ARGS: "--auth-host=md5"
     volumes:
       - postgres-hms-data:/var/lib/postgresql/data
     networks:
@@ -27,20 +28,27 @@ services:
     environment:
       SERVICE_NAME: metastore
       DB_DRIVER: postgres
+      SKIP_SCHEMA_INIT: "true"
       # Passa a conexão JDBC via JVM opts; o image baixa o driver postgres automaticamente.
       SERVICE_OPTS: >-
         -Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver
         -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://postgres-hms:5432/metastore
         -Djavax.jdo.option.ConnectionUserName=hive
         -Djavax.jdo.option.ConnectionPassword=hive
+         -Dhive.aux.jars.path=/opt/hive/auxlib
+
+      HADOOP_CLASSPATH: "/opt/hive/auxlib/*"
     volumes:
       - ./hive/hive-site.xml:/opt/hive/conf/hive-site.xml
+      - ./jars:/opt/hive/auxlib
+
     ports:
       - "9083:9083"
+
     networks:
       - lakehouse
+
     healthcheck:
-      # Usa bash built-in TCP para checar se a porta Thrift está aberta.
       test: ["CMD", "bash", "-c", "</dev/tcp/localhost/9083"]
       interval: 15s
       timeout: 10s

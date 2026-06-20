@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <configuration>
-
+<property>
+    <name>hive.execution.engine</name>
+    <value>mr</value>
+  </property>
   <!-- Diretório do warehouse — Trino gerencia as localizações via DDL,
        mas o HMS precisa de um valor configurado. -->
   <property>
