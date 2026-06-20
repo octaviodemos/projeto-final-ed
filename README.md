@@ -8,6 +8,7 @@
 [![MinIO](https://img.shields.io/badge/MinIO-S3%20Storage-C72E49?logo=minio&logoColor=white)](https://min.io/)
 [![Docker Compose](https://img.shields.io/badge/Docker%20Compose-Orchestration-2496ED?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
 [![Airflow](https://img.shields.io/badge/Apache%20Airflow-Orchestration-017CEE?logo=apacheairflow&logoColor=white)](https://airflow.apache.org/)
+[![Trino](https://img.shields.io/badge/Trino-Query%20Engine-DD00A1?logo=trino&logoColor=white)](https://trino.io/)
 [![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com/)
 [![Papermill](https://img.shields.io/badge/Papermill-Notebook%20Execution-F37626?logo=jupyter&logoColor=white)](https://papermill.readthedocs.io/)
 [![Metabase](https://img.shields.io/badge/Metabase-BI%20Dashboard-509EE3?logo=metabase&logoColor=white)](https://www.metabase.com/)
@@ -27,7 +28,8 @@ Repositório do projeto final da disciplina de Engenharia de Dados do curso de E
 - **Processamento:** PySpark + Delta Lake
 - **Orquestração de jobs:** Apache Airflow + Papermill
 - **Orquestração local:** Docker Compose
-- **Banco NoSQL/Supabase:** Supabase (opcional — fonte dos support tickets)
+- **Banco de dados:** Supabase (PostgreSQL) — fonte única de dados do projeto
+- **Query Engine:** Trino — virtualiza as tabelas Delta Lake da camada Gold para o Metabase
 - **Visualização:** Metabase
 - **Documentação:** MkDocs + mkdocs-material
 - **Gerenciador de dependências:** uv
@@ -55,7 +57,7 @@ cp .env.example .env
 
 > **Nota**: Edite o arquivo `.env` para incluir suas credenciais do Kaggle (`KAGGLE_USERNAME` e `KAGGLE_KEY`).
 
-### 3. Subir a infraestrutura (MinIO, Airflow e Metabase)
+### 3. Subir a infraestrutura (MinIO, Airflow, Trino e Metabase)
 
 ```bash
 cd docker
@@ -63,11 +65,12 @@ docker compose --env-file ../.env up -d
 cd ..
 ```
 
-| Serviço  | Endereço                  |
-|----------|---------------------------|
-| MinIO    | http://localhost:9000      |
-| Airflow  | http://localhost:8080      |
-| Metabase | http://localhost:3000      |
+| Serviço  | Endereço               |
+|----------|------------------------|
+| MinIO    | http://localhost:9000  |
+| Airflow  | http://localhost:8080  |
+| Trino    | http://localhost:8080  |
+| Metabase | http://localhost:3000  |
 
 ### 4. Ingestão — Camada Landing
 
@@ -89,7 +92,6 @@ uv run papermill notebooks/01a_landing_to_bronze.ipynb output.ipynb \
 
 > Os notebooks também podem ser executados manualmente via Jupyter ou orquestrados pelo Airflow em `http://localhost:8080`.
 
-
 ### 6. Processamento — Camada Silver
 
 **6a. Bronze → Silver**
@@ -100,10 +102,15 @@ uv run papermill notebooks/02_bronze_to_silver.ipynb output.ipynb \
     -p silver_bucket silver
 ```
 
-
 ### 7. Processamento — Camada Gold
 
-> A documentar após implementação da camada Gold.
+**7a. Silver → Gold**
+
+```bash
+uv run papermill notebooks/03_silver_to_gold.ipynb output.ipynb \
+    -p silver_bucket silver \
+    -p gold_bucket gold
+```
 
 ## Documentação (MkDocs)
 
@@ -181,8 +188,12 @@ Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para d
 
 - [MinIO — Documentation](https://min.io/docs/minio/linux/index.html) — documentação oficial do MinIO
 
+### Query Engine
+
+- [Trino — Documentation](https://trino.io/docs/current/) — documentação oficial do Trino
+- [Trino — Delta Lake Connector](https://trino.io/docs/current/connector/delta-lake.html) — conector utilizado para virtualizar as tabelas Delta Lake da camada Gold
+
 ### Orquestração
 
 - [Apache Airflow — Documentation](https://airflow.apache.org/docs/) — documentação oficial do Airflow
 - [Papermill — Documentation](https://papermill.readthedocs.io/en/latest/) — execução parametrizada de Jupyter Notebooks
-
