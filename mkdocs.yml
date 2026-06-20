@@ -29,11 +29,13 @@ theme:
 
   features:
     - navigation.tabs
+    - navigation.tabs.sticky   # ← fixa a barra de tabs ao scrollar
     - navigation.sections
     - navigation.top
     - navigation.expand
     - navigation.instant
     - navigation.tracking
+    - toc.follow               # ← sumário lateral acompanha o scroll
 
     - search.highlight
     - search.suggest
