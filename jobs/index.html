@@ -693,6 +693,84 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Jobs de ingestão">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-generate_agentspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parâmetros — generate_agents.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametros-generate_support_tickets_nosqlpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parâmetros — generate_support_tickets_nosql.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jobs-de-processamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jobs de processamento
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jobs de processamento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-01a_landing_to_bronzeipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parâmetros — 01a_landing_to_bronze.ipynb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametros-02_bronze_to_silveripynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parâmetros — 02_bronze_to_silver.ipynb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametros-03_silver_to_goldipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parâmetros — 03_silver_to_gold.ipynb
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -707,10 +785,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execucao" class="md-nav__link">
+  <a href="#execucao-via-airflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execução
+        Execução via Airflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tratamento-de-erros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tratamento de erros
       
     </span>
   </a>
@@ -771,6 +860,84 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Jobs de ingestão">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-generate_agentspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parâmetros — generate_agents.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametros-generate_support_tickets_nosqlpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parâmetros — generate_support_tickets_nosql.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jobs-de-processamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jobs de processamento
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jobs de processamento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-01a_landing_to_bronzeipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parâmetros — 01a_landing_to_bronze.ipynb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametros-02_bronze_to_silveripynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parâmetros — 02_bronze_to_silver.ipynb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametros-03_silver_to_goldipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parâmetros — 03_silver_to_gold.ipynb
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -785,10 +952,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execucao" class="md-nav__link">
+  <a href="#execucao-via-airflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execução
+        Execução via Airflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tratamento-de-erros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tratamento de erros
       
     </span>
   </a>
@@ -818,13 +996,10 @@
 <h1 id="jobs">Jobs</h1>
 <p>Documentação dos jobs de processamento da pipeline.</p>
 <h2 id="visao-geral">Visão geral</h2>
-<p>Liste todos os jobs da pipeline, sua ordem de execução e dependências.</p>
-<pre class="mermaid"><code>flowchart TD
-    J1[Ingest Landing] --&gt; J2[Bronze]
-    J2 --&gt; J3[Silver]
-    J3 --&gt; J4[Gold]</code></pre>
+<p>A pipeline é composta por jobs sequenciais, onde cada camada depende da anterior. O Supabase é a fonte única de dados — os scripts de ingestão extraem as tabelas e fazem upload para a camada Landing no MinIO, de onde o processamento Medallion segue até o Gold.</p>
+<hr />
 <h2 id="jobs-de-ingestao">Jobs de ingestão</h2>
-<p>Scripts em <code>scripts/ingest/</code>:</p>
+<p>Scripts em <code>scripts/ingest/</code>, executados antes da pipeline Medallion.</p>
 <table>
 <thead>
 <tr>
@@ -836,13 +1011,211 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Geração de agentes</td>
+<td><code>generate_agents.py</code></td>
+<td>Gera 50 agentes sintéticos (5 equipes × 10) e insere na tabela <code>agents</code> do Supabase</td>
+<td>Uma vez / sob demanda</td>
+</tr>
+<tr>
+<td>Geração de tickets</td>
+<td><code>generate_support_tickets_nosql.py</code></td>
+<td>Gera 12.000 tickets de suporte vinculados aos pedidos Olist e insere nas tabelas <code>support_tickets</code> e <code>support_ticket_messages</code> do Supabase</td>
+<td>Uma vez / sob demanda</td>
+</tr>
+<tr>
+<td>Download Olist</td>
+<td><code>landing_ingest.py</code></td>
+<td>Extrai as 12 tabelas do Supabase como CSV e faz upload para o bucket <code>landing</code> no MinIO</td>
+<td>Uma vez / sob demanda</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Ordem obrigatória:</strong> <code>generate_agents.py</code> → <code>generate_support_tickets_nosql.py</code> → <code>landing_ingest.py</code>. Os tickets referenciam os agentes via <code>agent_id</code>.</p>
+</blockquote>
+<h3 id="parametros-generate_agentspy">Parâmetros — <code>generate_agents.py</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--agents-per-team</code></td>
+<td><code>10</code></td>
+<td>Agentes gerados por equipe</td>
+</tr>
+<tr>
+<td><code>--seed</code></td>
+<td><code>42</code></td>
+<td>Semente para reprodutibilidade</td>
+</tr>
+<tr>
+<td><code>--supabase-url</code></td>
+<td><code>SUPABASE_URL</code></td>
+<td>URL de conexão com o Supabase</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parametros-generate_support_tickets_nosqlpy">Parâmetros — <code>generate_support_tickets_nosql.py</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--record-count</code></td>
+<td><code>12000</code></td>
+<td>Quantidade de tickets a gerar</td>
+</tr>
+<tr>
+<td><code>--start-date</code></td>
+<td><code>2016-01-01</code></td>
+<td>Data mínima de <code>opened_at</code></td>
+</tr>
+<tr>
+<td><code>--end-date</code></td>
+<td><code>2018-12-31</code></td>
+<td>Data máxima de <code>opened_at</code></td>
+</tr>
+<tr>
+<td><code>--seed</code></td>
+<td><code>42</code></td>
+<td>Semente para reprodutibilidade</td>
+</tr>
+<tr>
+<td><code>--supabase-url</code></td>
+<td><code>SUPABASE_URL</code></td>
+<td>URL de conexão com o Supabase</td>
+</tr>
+<tr>
+<td><code>--orders-csv</code></td>
+<td>—</td>
+<td>CSV local de pedidos (modo dev, sem Supabase)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="jobs-de-processamento">Jobs de processamento</h2>
+<p>Notebooks em <code>notebooks/</code>, executados via Papermill na ordem abaixo.</p>
+<table>
+<thead>
+<tr>
+<th>Job</th>
+<th>Notebook</th>
+<th>Entrada</th>
+<th>Saída</th>
+<th>Frequência</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Landing → Bronze</td>
+<td><code>01a_landing_to_bronze.ipynb</code></td>
+<td><code>s3a://landing/*.csv</code> (12 tabelas)</td>
+<td><code>s3a://bronze/&lt;tabela&gt;</code> (Delta Lake)</td>
+<td>Sob demanda / Airflow</td>
+</tr>
+<tr>
+<td>Bronze → Silver</td>
+<td><code>02_bronze_to_silver.ipynb</code></td>
+<td><code>s3a://bronze/*</code> (12 tabelas)</td>
+<td><code>s3a://silver/*</code> (Delta Lake)</td>
+<td>Sob demanda / Airflow</td>
+</tr>
+<tr>
+<td>Silver → Gold</td>
+<td><code>03_silver_to_gold.ipynb</code></td>
+<td><code>s3a://silver/*</code> (12 tabelas)</td>
+<td><code>s3a://gold/*</code> (Delta Lake — 5 dims + 3 fatos)</td>
+<td>Sob demanda / Airflow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parametros-01a_landing_to_bronzeipynb">Parâmetros — <code>01a_landing_to_bronze.ipynb</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>landing_bucket</code></td>
+<td><code>landing</code></td>
+<td>Bucket de origem no MinIO</td>
+</tr>
+<tr>
+<td><code>bronze_bucket</code></td>
+<td><code>bronze</code></td>
+<td>Bucket de destino no MinIO</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parametros-02_bronze_to_silveripynb">Parâmetros — <code>02_bronze_to_silver.ipynb</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bronze_bucket</code></td>
+<td><code>bronze</code></td>
+<td>Bucket de origem no MinIO</td>
+</tr>
+<tr>
+<td><code>silver_bucket</code></td>
+<td><code>silver</code></td>
+<td>Bucket de destino no MinIO</td>
+</tr>
+<tr>
+<td><code>write_mode</code></td>
+<td><code>overwrite</code></td>
+<td>Modo de escrita Delta (<code>overwrite</code> ou <code>append</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parametros-03_silver_to_goldipynb">Parâmetros — <code>03_silver_to_gold.ipynb</code></h3>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>silver_bucket</code></td>
+<td><code>silver</code></td>
+<td>Bucket de origem no MinIO</td>
+</tr>
+<tr>
+<td><code>gold_bucket</code></td>
+<td><code>gold</code></td>
+<td>Bucket de destino no MinIO</td>
+</tr>
+<tr>
+<td><code>write_mode</code></td>
+<td><code>overwrite</code></td>
+<td>Modo de escrita Delta (<code>overwrite</code> ou <code>append</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="jobs-de-infraestrutura">Jobs de infraestrutura</h2>
 <p>Scripts em <code>scripts/infra/</code>:</p>
 <table>
@@ -855,14 +1228,63 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
+<td>Setup de JARs</td>
+<td><code>setup_jars.py</code></td>
+<td>Baixa os JARs <code>hadoop-aws</code> e <code>aws-java-sdk-bundle</code> necessários para o PySpark acessar o MinIO via S3A</td>
 </tr>
 </tbody>
 </table>
-<h2 id="execucao">Execução</h2>
-<p>Descreva como executar os jobs localmente e em produção.</p>
+<p>Após a pipeline Gold, as tabelas Delta precisam ser registradas no Hive Metastore para ficarem visíveis no Trino:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="n">gold</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;s3a://gold/&#39;</span><span class="p">);</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">CALL</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">register_table</span><span class="p">(</span><span class="k">schema_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;fact_orders&#39;</span><span class="p">,</span><span class="w">          </span><span class="n">table_location</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;s3a://gold/fact_orders&#39;</span><span class="p">);</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">CALL</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">register_table</span><span class="p">(</span><span class="k">schema_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;fact_reviews&#39;</span><span class="p">,</span><span class="w">         </span><span class="n">table_location</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;s3a://gold/fact_reviews&#39;</span><span class="p">);</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">CALL</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">register_table</span><span class="p">(</span><span class="k">schema_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;fact_support_tickets&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">table_location</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;s3a://gold/fact_support_tickets&#39;</span><span class="p">);</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">CALL</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">register_table</span><span class="p">(</span><span class="k">schema_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;dim_date&#39;</span><span class="p">,</span><span class="w">             </span><span class="n">table_location</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;s3a://gold/dim_date&#39;</span><span class="p">);</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">CALL</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">register_table</span><span class="p">(</span><span class="k">schema_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;dim_customer&#39;</span><span class="p">,</span><span class="w">         </span><span class="n">table_location</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;s3a://gold/dim_customer&#39;</span><span class="p">);</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">CALL</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">register_table</span><span class="p">(</span><span class="k">schema_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;dim_seller&#39;</span><span class="p">,</span><span class="w">           </span><span class="n">table_location</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;s3a://gold/dim_seller&#39;</span><span class="p">);</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">CALL</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">register_table</span><span class="p">(</span><span class="k">schema_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;dim_product&#39;</span><span class="p">,</span><span class="w">          </span><span class="n">table_location</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;s3a://gold/dim_product&#39;</span><span class="p">);</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">CALL</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">register_table</span><span class="p">(</span><span class="k">schema_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;dim_agent&#39;</span><span class="p">,</span><span class="w">            </span><span class="n">table_location</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;s3a://gold/dim_agent&#39;</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="execucao-via-airflow">Execução via Airflow</h2>
+<p>Os jobs podem ser orquestrados automaticamente pelas DAGs definidas em <code>airflow/dags/</code>. Acesse o painel em <code>http://localhost:8080</code> e ative as DAGs disponíveis.</p>
+<hr />
+<h2 id="tratamento-de-erros">Tratamento de erros</h2>
+<table>
+<thead>
+<tr>
+<th>Job</th>
+<th>Comportamento em caso de falha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>generate_agents.py</code></td>
+<td>Lança <code>RuntimeError</code> se <code>SUPABASE_URL</code> não estiver configurada ou a conexão falhar</td>
+</tr>
+<tr>
+<td><code>generate_support_tickets_nosql.py</code></td>
+<td>Lança <code>RuntimeError</code> se não encontrar agentes no Supabase (<code>run generate_agents.py first</code>) ou se os pares <code>order_id</code>/<code>customer_id</code> forem inválidos</td>
+</tr>
+<tr>
+<td><code>landing_ingest.py</code></td>
+<td>Lança <code>RuntimeError</code> em caso de falha de conexão com MinIO ou Supabase</td>
+</tr>
+<tr>
+<td><code>01a_landing_to_bronze.ipynb</code></td>
+<td>Lança <code>RuntimeError</code> se o número de tabelas ingeridas com sucesso for menor que 12</td>
+</tr>
+<tr>
+<td><code>02_bronze_to_silver.ipynb</code></td>
+<td>Lança <code>RuntimeError</code> com a lista de tabelas que falharam no processamento de DQ</td>
+</tr>
+<tr>
+<td><code>03_silver_to_gold.ipynb</code></td>
+<td>Lança <code>RuntimeError</code> com a lista de tabelas Gold que falharam na escrita Delta</td>
+</tr>
+</tbody>
+</table>
 
 
 
