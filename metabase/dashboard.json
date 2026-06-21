@@ -1,0 +1,30 @@
+{
+  "dashboard_id": 3,
+  "name": "Dashboard",
+  "cards": [
+    {
+      "id": 40,
+      "name": "Total Revenue"
+    },
+    {
+      "id": 41,
+      "name": "Average Delivery Time"
+    },
+    {
+      "id": 42,
+      "name": "Open Orders"
+    },
+    {
+      "id": 46,
+      "name": "Average Rating"
+    },
+    {
+      "id": 44,
+      "name": "Rating x Delivery Time"
+    },
+    {
+      "id": 45,
+      "name": "Tickets resolvidos / tempo"
+    }
+  ]
+}
