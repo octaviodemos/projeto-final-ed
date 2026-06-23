@@ -105,6 +105,43 @@ CALL delta.system.register_table(schema_name => 'gold', table_name => 'dim_agent
 
 Os jobs podem ser orquestrados automaticamente pelas DAGs definidas em `airflow/dags/`. Acesse o painel em `http://localhost:8080` e ative as DAGs disponíveis.
 
+### DAG `pipeline_medalhao`
+
+DAG principal em `airflow/dags/pipeline_medalhao.py`. Executa os notebooks de processamento em sequência via `PapermillOperator`:
+
+```
+01a_landing_to_bronze → 02_bronze_to_silver → 03_silver_to_gold
+```
+
+| Task | Notebook | Descrição |
+|---|---|---|
+| `01a_landing_to_bronze` | `01a_landing_to_bronze.ipynb` | Landing (CSV) → Bronze (Delta Lake) |
+| `02_bronze_to_silver` | `02_bronze_to_silver.ipynb` | Bronze → Silver (limpeza e DQ) |
+| `03_silver_to_gold` | `03_silver_to_gold.ipynb` | Silver → Gold (modelagem dimensional) |
+
+**Pré-requisitos:**
+
+1. Infra MinIO/Trino/Metabase rodando: `cd docker && docker compose --env-file ../.env up -d`
+2. Dados na camada Landing: `uv run python scripts/ingest/landing_ingest.py`
+3. Airflow local (Astro CLI):
+
+```bash
+cd airflow
+astro dev restart --no-cache
+```
+
+Use `--no-cache` após alterar `Dockerfile`, `requirements.txt` ou `packages.txt`. Para um restart simples (só DAGs), basta `astro dev restart`.
+
+4. No Airflow UI (`http://localhost:8080`), ative a DAG `pipeline_medalhao` e dispare manualmente (▶).
+
+> **Nota:** o Trino usa a porta `8081` quando o Airflow está na `8080`. Configure `TRINO_PORT=8081` no `.env`.
+
+**Print da DAG (Graph view com run Succeeded):**
+
+Salve o screenshot em `docs/assets/airflow-pipeline-medalhao.png` após a execução end-to-end.
+
+![Pipeline Medallion — Airflow DAG](assets/airflow-pipeline-medalhao.png)
+
 ---
 
 ## Tratamento de erros
