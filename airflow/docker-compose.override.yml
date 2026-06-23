@@ -1,0 +1,33 @@
+x-airflow-env: &airflow-env
+  PROJECT_ROOT: /opt/projeto
+  MINIO_ENDPOINT: http://host.docker.internal:9000
+  AIRFLOW__SCHEDULER__TASK_INSTANCE_HEARTBEAT_TIMEOUT: "7200"
+  AIRFLOW__CORE__DEFAULT_TASK_EXECUTION_TIMEOUT: "10800"
+
+x-airflow-volumes: &airflow-volumes
+  - ../notebooks:/opt/projeto/notebooks:ro
+  - ../.env:/opt/projeto/.env:ro
+
+x-airflow-hosts: &airflow-hosts
+  - "host.docker.internal:host-gateway"
+
+services:
+  api-server:
+    extra_hosts: *airflow-hosts
+    environment: *airflow-env
+    volumes: *airflow-volumes
+
+  scheduler:
+    extra_hosts: *airflow-hosts
+    environment: *airflow-env
+    volumes: *airflow-volumes
+
+  dag-processor:
+    extra_hosts: *airflow-hosts
+    environment: *airflow-env
+    volumes: *airflow-volumes
+
+  triggerer:
+    extra_hosts: *airflow-hosts
+    environment: *airflow-env
+    volumes: *airflow-volumes
