@@ -793,6 +793,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Execução via Airflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dag-pipeline_medalhao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAG pipeline_medalhao
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -959,6 +976,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Execução via Airflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dag-pipeline_medalhao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAG pipeline_medalhao
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1249,6 +1283,55 @@
 <hr />
 <h2 id="execucao-via-airflow">Execução via Airflow</h2>
 <p>Os jobs podem ser orquestrados automaticamente pelas DAGs definidas em <code>airflow/dags/</code>. Acesse o painel em <code>http://localhost:8080</code> e ative as DAGs disponíveis.</p>
+<h3 id="dag-pipeline_medalhao">DAG <code>pipeline_medalhao</code></h3>
+<p>DAG principal em <code>airflow/dags/pipeline_medalhao.py</code>. Executa os notebooks de processamento em sequência via <code>PapermillOperator</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>01a_landing_to_bronze → 02_bronze_to_silver → 03_silver_to_gold
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Notebook</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01a_landing_to_bronze</code></td>
+<td><code>01a_landing_to_bronze.ipynb</code></td>
+<td>Landing (CSV) → Bronze (Delta Lake)</td>
+</tr>
+<tr>
+<td><code>02_bronze_to_silver</code></td>
+<td><code>02_bronze_to_silver.ipynb</code></td>
+<td>Bronze → Silver (limpeza e DQ)</td>
+</tr>
+<tr>
+<td><code>03_silver_to_gold</code></td>
+<td><code>03_silver_to_gold.ipynb</code></td>
+<td>Silver → Gold (modelagem dimensional)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pré-requisitos:</strong></p>
+<ol>
+<li>Infra MinIO/Trino/Metabase rodando: <code>cd docker &amp;&amp; docker compose --env-file ../.env up -d</code></li>
+<li>Dados na camada Landing: <code>uv run python scripts/ingest/landing_ingest.py</code></li>
+<li>Airflow local (Astro CLI):</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>airflow
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>astro<span class="w"> </span>dev<span class="w"> </span>restart<span class="w"> </span>--no-cache
+</code></pre></div>
+<p>Use <code>--no-cache</code> após alterar <code>Dockerfile</code>, <code>requirements.txt</code> ou <code>packages.txt</code>. Para um restart simples (só DAGs), basta <code>astro dev restart</code>.</p>
+<ol>
+<li>No Airflow UI (<code>http://localhost:8080</code>), ative a DAG <code>pipeline_medalhao</code> e dispare manualmente (▶).</li>
+</ol>
+<blockquote>
+<p><strong>Nota:</strong> o Trino usa a porta <code>8081</code> quando o Airflow está na <code>8080</code>. Configure <code>TRINO_PORT=8081</code> no <code>.env</code>.</p>
+</blockquote>
+<p><strong>Print da DAG (Graph view com run Succeeded):</strong></p>
+<p>Salve o screenshot em <code>docs/assets/airflow-pipeline-medalhao.png</code> após a execução end-to-end.</p>
+<p><img alt="Pipeline Medallion — Airflow DAG" src="assets/airflow-pipeline-medalhao.png" /></p>
 <hr />
 <h2 id="tratamento-de-erros">Tratamento de erros</h2>
 <table>
