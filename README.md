@@ -47,70 +47,55 @@ cd projeto-final-ed
 
 ### 2. Configurar o ambiente
 
-Sincronize as dependências e baixe os JARs necessários para que o PySpark se conecte ao MinIO via protocolo S3A.
+Sincronize as dependências (incluindo o grupo `dev` com o `poethepoet`):
 
 ```bash
-uv sync
-uv run python scripts/setup_jars.py
+uv sync --all-groups
 cp .env.example .env
 ```
 
-> **Nota**: Edite o arquivo `.env` para incluir suas credenciais do Kaggle (`KAGGLE_USERNAME` e `KAGGLE_KEY`).
+> **Nota**: Edite o arquivo `.env` para incluir suas credenciais do Kaggle e Supabase.
 
-### 3. Subir a infraestrutura (MinIO, Airflow, Trino e Metabase)
-
-```bash
-cd docker
-docker compose --env-file ../.env up -d
-cd ..
-```
-
-| Serviço  | Endereço               |
-|----------|------------------------|
-| MinIO    | http://localhost:9000  |
-| Airflow  | http://localhost:8080  |
-| Trino    | http://localhost:8080  |
-| Metabase | http://localhost:3000  |
-
-### 4. Ingestão — Camada Landing
-
-**4a. Download do dataset Olist (CSV → MinIO Landing)**
+### 3. Subir a infraestrutura (MinIO, Hive Metastore, Trino e Metabase)
 
 ```bash
-uv run python scripts/ingest/landing_ingest.py
+uv run poe docker-up
 ```
 
-### 5. Processamento — Camada Bronze
-
-**5a. CSVs Olist → Bronze**
+Para derrubar:
 
 ```bash
-uv run papermill notebooks/01a_landing_to_bronze.ipynb output.ipynb \
-    -p landing_bucket landing \
-    -p bronze_bucket bronze
+uv run poe docker-down
 ```
 
-> Os notebooks também podem ser executados manualmente via Jupyter ou orquestrados pelo Airflow em `http://localhost:8080`.
+| Serviço  | Endereço              |
+|----------|-----------------------|
+| MinIO    | http://localhost:9000 |
+| Trino    | http://localhost:8080 |
+| Metabase | http://localhost:3000 |
 
-### 6. Processamento — Camada Silver
-
-**6a. Bronze → Silver**
+### 4. Subir o Airflow
 
 ```bash
-uv run papermill notebooks/02_bronze_to_silver.ipynb output.ipynb \
-    -p bronze_bucket bronze \
-    -p silver_bucket silver
+uv run poe airflow
 ```
 
-### 7. Processamento — Camada Gold
+| Serviço | Endereço              |
+|---------|-----------------------|
+| Airflow | http://localhost:8080 |
 
-**7a. Silver → Gold**
+### 5. Executar o pipeline
 
-```bash
-uv run papermill notebooks/03_silver_to_gold.ipynb output.ipynb \
-    -p silver_bucket silver \
-    -p gold_bucket gold
-```
+No Airflow (`http://localhost:8080`), acione a DAG `pipeline_medalhao`. Ela executa automaticamente:
+
+1. `00_download_olist` — download do dataset Olist (Kaggle → MinIO Landing)
+2. `01a_landing_to_bronze` — CSV → Bronze
+3. `02_bronze_to_silver` — Bronze → Silver
+4. `03_silver_to_gold` — Silver → Gold
+5. `register_trino_tables` — registra as tabelas Gold no Trino
+6. `seed_metabase` — atualiza o dashboard no Metabase
+
+Após a execução, o dashboard estará disponível em http://localhost:3000.
 
 ## Documentação (MkDocs)
 

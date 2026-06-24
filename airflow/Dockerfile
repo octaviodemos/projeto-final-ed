@@ -20,3 +20,4 @@ for name, url in jars.items():
         urllib.request.urlretrieve(url, path)
 PY
 USER astro
+RUN mkdir -p /tmp/notebooks_out

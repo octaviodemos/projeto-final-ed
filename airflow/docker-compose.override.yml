@@ -6,6 +6,7 @@ x-airflow-env: &airflow-env
 
 x-airflow-volumes: &airflow-volumes
   - ../notebooks:/opt/projeto/notebooks:ro
+  - ../metabase:/opt/projeto/metabase:ro
   - ../.env:/opt/projeto/.env:ro
 
 x-airflow-hosts: &airflow-hosts
@@ -15,19 +16,23 @@ services:
   api-server:
     extra_hosts: *airflow-hosts
     environment: *airflow-env
+    env_file: ../.env
     volumes: *airflow-volumes
 
   scheduler:
     extra_hosts: *airflow-hosts
     environment: *airflow-env
+    env_file: ../.env
     volumes: *airflow-volumes
 
   dag-processor:
     extra_hosts: *airflow-hosts
     environment: *airflow-env
+    env_file: ../.env
     volumes: *airflow-volumes
 
   triggerer:
     extra_hosts: *airflow-hosts
     environment: *airflow-env
+    env_file: ../.env
     volumes: *airflow-volumes

@@ -2,3 +2,4 @@ apache-airflow-providers-papermill>=3.7.0
 pyspark>=3.5
 delta-spark==3.2.1
 ipykernel>=6.29
+trino>=0.328
