@@ -200,7 +200,6 @@ data/*.parquet
 # Airflow
 airflow/logs/
 airflow/.astro/
-airflow/include/out/
 
 # Dados locais
 data/olist_csvs/

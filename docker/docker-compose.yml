@@ -114,20 +114,6 @@ services:
     networks:
       - lakehouse
 
-  # ── Trino init (registra tabelas Gold no HMS) ───────────────────────
-  trino-init:
-    image: trinodb/trino:435
-    container_name: trino-init
-    depends_on:
-      trino:
-        condition: service_healthy
-    volumes:
-      - ./trino/init.sql:/init.sql
-    entrypoint: trino --server http://trino:8080 --file /init.sql --ignore-errors
-    networks:
-      - lakehouse
-    restart: "no"
-
   metabase:
     image: metabase/metabase:latest
     container_name: metabase

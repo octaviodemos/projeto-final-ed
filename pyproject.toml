@@ -24,3 +24,10 @@ dev = [
 [tool.poe.tasks]
 docker-up = "docker compose -f docker/docker-compose.yml --env-file .env up -d"
 docker-down = "docker compose -f docker/docker-compose.yml down"
+
+[tool.poe.tasks.airflow]
+sequence = [
+  { shell = "command -v astro || curl -sSL install.astronomer.io | sudo bash" },
+  { shell = "cd airflow && yes n | astro dev init" },
+  { shell = "cd airflow && astro dev start || true" },
+]

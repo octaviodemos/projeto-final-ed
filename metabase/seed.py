@@ -24,7 +24,11 @@ def api(method, path, data=None, token=None):
             body = r.read()
             return json.loads(body) if body else None
     except urllib.error.HTTPError as e:
-        raise RuntimeError(f"{method} {path} → {e.code}: {e.read().decode()}")
+        try:
+            body = e.read().decode()
+        except Exception:
+            body = f"HTTP {e.code}"
+        raise RuntimeError(f"{method} {path} → {e.code}: {body}") from None
 
 
 def wait_ready():
@@ -91,7 +95,12 @@ def get_or_create_db(token):
     return db["id"]
 
 
-def make_card(token, db_id, name, sql, display="scalar", viz=None):
+def get_or_create_card(token, db_id, name, sql, display="scalar", viz=None):
+    existing = api("GET", "/api/card", token=token)
+    for card in existing:
+        if card["name"] == name and not card.get("archived", False):
+            print(f"Card '{name}' já existe (id={card['id']})", flush=True)
+            return card["id"]
     card = api("POST", "/api/card", {
         "name": name,
         "display": display,
@@ -110,31 +119,40 @@ def main():
     token = authenticate()
     print("Autenticado.", flush=True)
 
-    dashboards = api("GET", "/api/dashboard?archived=false", token=token)
-    for d in dashboards:
-        if d["name"] == "Dashboard Gold":
-            print(f"Dashboard já existe (id={d['id']}), recriando...", flush=True)
-            api("PUT", f"/api/dashboard/{d['id']}", {"archived": True}, token=token)
-            break
+    def _find_dashboard(response):
+        items = response if isinstance(response, list) else response.get("data", [])
+        return next((d for d in items if d.get("name") == "Dashboard Gold"), None)
+
+    did = None
+    found = _find_dashboard(api("GET", "/api/dashboard?archived=false", token=token))
+    if found is None:
+        found = _find_dashboard(api("GET", "/api/dashboard?archived=true", token=token))
+        if found:
+            api("PUT", f"/api/dashboard/{found['id']}", {"archived": False}, token=token)
+    if found:
+        did = found["id"]
+        print(f"Dashboard já existe (id={did}), atualizando...", flush=True)
 
     db_id = get_or_create_db(token)
+    api("POST", f"/api/database/{db_id}/sync_schema", token=token)
+    print("Sync do schema iniciado.", flush=True)
 
     print("Criando cards...", flush=True)
 
-    kpi_receita = make_card(token, db_id, "Receita total",
+    kpi_receita = get_or_create_card(token, db_id, "Receita total",
         "SELECT SUM(price) FROM delta.gold.fact_orders WHERE is_delivered = true")
 
-    kpi_pedidos = make_card(token, db_id, "Pedidos abertos",
+    kpi_pedidos = get_or_create_card(token, db_id, "Pedidos abertos",
         "SELECT COUNT(DISTINCT order_id) FROM delta.gold.fact_orders WHERE is_pending = true")
 
-    kpi_avaliacao = make_card(token, db_id, "Avaliação média",
+    kpi_avaliacao = get_or_create_card(token, db_id, "Avaliação média",
         "SELECT ROUND(AVG(CAST(review_score AS double)), 2) FROM delta.gold.fact_reviews")
 
-    kpi_prazo = make_card(token, db_id, "Prazo médio de entrega",
+    kpi_prazo = get_or_create_card(token, db_id, "Prazo médio de entrega",
         "SELECT ROUND(AVG(CAST(delivery_days AS double)), 2) FROM delta.gold.fact_orders WHERE is_delivered = true",
         viz={"scalar.suffix": "d"})
 
-    chart_rating = make_card(token, db_id, "Classificação x Prazo de Entrega", """\
+    chart_rating = get_or_create_card(token, db_id, "Classificação x Prazo de Entrega", """\
 SELECT
   CAST(d.year AS varchar) || '-' || LPAD(CAST(d.month AS varchar), 2, '0') AS "Mês",
   ROUND(AVG(CAST(r.review_score AS double)), 2) AS "Avaliação Média"
@@ -143,7 +161,7 @@ JOIN delta.gold.dim_date d ON r.date_id = d.date_id
 GROUP BY d.year, d.month
 ORDER BY d.year, d.month""", display="line")
 
-    chart_tickets = make_card(token, db_id, "Tickets resolvidos / tempo", """\
+    chart_tickets = get_or_create_card(token, db_id, "Tickets resolvidos / tempo", """\
 SELECT
   CAST(d.year AS varchar) || '-' || LPAD(CAST(d.month AS varchar), 2, '0') AS "Mês",
   COUNT(*) AS "Tickets Resolvidos"
@@ -153,9 +171,9 @@ WHERE t.is_solved = true
 GROUP BY d.year, d.month
 ORDER BY d.year, d.month""", display="line")
 
-    print("Criando dashboard...", flush=True)
-    dashboard = api("POST", "/api/dashboard", {"name": "Dashboard Gold"}, token=token)
-    did = dashboard["id"]
+    if did is None:
+        print("Criando dashboard...", flush=True)
+        did = api("POST", "/api/dashboard", {"name": "Dashboard Gold"}, token=token)["id"]
 
     layout = [
         (kpi_receita,    0, 0,  6, 4),
